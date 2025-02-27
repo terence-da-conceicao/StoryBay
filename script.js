@@ -18,6 +18,9 @@ booksList.forEach(book => {
 
 // document.getElementById("inputValue").addEventListener("submit", getBook)
 
+let isBookAvailable = false;
+let chosenBook;
+let cart = [];
 
 
 
@@ -26,16 +29,16 @@ booksList.forEach(book => {
 function getBook(event) {
     event.preventDefault()
     const inputValue = document.getElementById("inputValue").value.toLowerCase();
-    let isBookAvailable = false;
     console.log(inputValue);
 
     for (let i = 0; i < booksList.length; i++) {
         let loweredBook = booksList[i].title.toLowerCase()
         if (inputValue === loweredBook) {
             isBookAvailable = true;
-            document.getElementById("bookChoice").innerHTML = `Vous avez choisi ${booksList[i].title}.`;
+            chosenBook = booksList[i];
             console.log("isBookAvailable : ", isBookAvailable);
-            return inputValue
+            createBookCard(chosenBook);
+            return booksList[i].title
         }
     }
     if (!isBookAvailable) {
@@ -45,4 +48,18 @@ function getBook(event) {
 }
 
 
+function createBookCard(book){
+    document.getElementById("bookChoice").innerHTML = `<h3>${book.title}</h1>`;
+    document.getElementById("buyBook").style.display = "block";
+}
+
+const displayCart = document.getElementById("cart")
+
+function addToCart(book) {
+    book = chosenBook;
+    cart.push(chosenBook);
+    console.log("cart:",cart)
+    const li = document.createElement("li");
+    li.textContent = `${chosenBook.title}, ${chosenBook.price}`;
+}
 

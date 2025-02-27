@@ -14,14 +14,21 @@
         <button type="submit" onclick="getBook(event)">Valider</button>
     </form>
 
-    <p id="bookChoice"></p>
+    
+    <div id="buyBook">
+        <p id="bookChoice"></p>
+        <button type="button" onclick="addToCart()">Ajouter au panier</button>
+       <!--comment ajouter un paramètre à addToCart()?--> 
+       <!--essayer avec addEventListener : gros echec car je suis une grosse noob-->
+    </div>
+    <br>
+
+    <div>Votre panier :
+        <ul id="cart">
+        </ul>
+    </div>
 
     <datalist id="books">
-        <!-- <option value="Henri Pottier 1"></option>
-        <option value="Henri Pottier 2"></option>
-        <option value="Henri Pottier 3"></option>
-        <option value="Henri Pottier 4"></option>
-        <option value="Henri Pottier 5"></option> -->
     </datalist>
 
 </body>
