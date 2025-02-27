@@ -17,13 +17,15 @@ booksList.forEach(book => {
 
 
 function getBook() {
-    const inputValue = document.getElementById("inputValue").value;
+    const inputValue = document.getElementById("inputValue").value.toLowerCase();
     let isBookAvailable = false;
     console.log(inputValue);
+
     for (let i = 0; i < booksList.length; i++) {
-        if (inputValue === booksList[i].title) {
+        let loweredBook = booksList[i].title.toLowerCase()
+        if (inputValue === loweredBook) {
             isBookAvailable = true;
-            document.getElementById("bookChoice").innerHTML = `Vous avez choisi ${inputValue}.`;
+            document.getElementById("bookChoice").innerHTML = `Vous avez choisi ${booksList[i].title}.`;
             console.log("isBookAvailable : ", isBookAvailable);
             return inputValue
         }
