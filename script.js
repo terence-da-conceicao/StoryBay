@@ -16,7 +16,15 @@ booksList.forEach(book => {
 });
 
 
-function getBook() {
+// document.getElementById("inputValue").addEventListener("submit", getBook)
+
+
+
+
+
+
+function getBook(event) {
+    event.preventDefault()
     const inputValue = document.getElementById("inputValue").value.toLowerCase();
     let isBookAvailable = false;
     console.log(inputValue);
