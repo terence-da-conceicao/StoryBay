@@ -8,6 +8,21 @@
     <title>Henri Pottier Store</title>
 </head>
 <body>
-    <p id="test"></p>
+    <form>
+        <label for="searchedInput">Recherchez un livre : </label>
+        <input type="search" id="inputValue" list="books" required>
+        <button type="button" onClick="getBook()">Valider</button>
+    </form>
+
+    <p id="bookChoice"></p>
+
+    <datalist id="books">
+        <!-- <option value="Henri Pottier 1"></option>
+        <option value="Henri Pottier 2"></option>
+        <option value="Henri Pottier 3"></option>
+        <option value="Henri Pottier 4"></option>
+        <option value="Henri Pottier 5"></option> -->
+    </datalist>
+
 </body>
 </html>
