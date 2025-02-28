@@ -9,17 +9,16 @@
 </head>
 <body>
     <form>
-        <label for="searchedInput">Recherchez un livre : </label>
+        <label for="inputValue">Recherchez un livre : </label>
         <input type="search" id="inputValue" list="books" required>
-        <button type="submit" onclick="getBook(event)">Valider</button>
+        <button type="submit" id="buttonId">Rechercher</button>
     </form>
-
     
+            <!-- <button type="button" id="triggerFunction">Envoyer</button> -->
+
     <div id="buyBook">
         <p id="bookChoice"></p>
         <button type="button" onclick="addToCart()">Ajouter au panier</button>
-       <!--comment ajouter un paramètre à addToCart()?--> 
-       <!--essayer avec addEventListener : gros echec car je suis une grosse noob-->
     </div>
     <br>
 

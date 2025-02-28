@@ -23,8 +23,13 @@ let chosenBook;
 let cart = [];
 
 
+document.getElementById("buttonId").addEventListener("submit", getBook); 
 
-
+function test(event) {
+    event.preventDefault()
+    console.log(event.target.value)
+    console.log(form)
+}
 
 function getBook(event) {
     event.preventDefault()
@@ -55,11 +60,10 @@ function createBookCard(book){
 
 const displayCart = document.getElementById("cart")
 
-function addToCart(book) {
-    book = chosenBook;
+function addToCart() {
     cart.push(chosenBook);
     console.log("cart:",cart)
     const li = document.createElement("li");
-    li.textContent = `${chosenBook.title}, ${chosenBook.price}`;
+    li.value = `${chosenBook.title}, ${chosenBook.price}`;
 }
 
