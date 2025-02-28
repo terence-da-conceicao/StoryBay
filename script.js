@@ -6,8 +6,11 @@ const booksList = [
     {title: "Henri Pottier 5", price: 10}
 ]
 
-//on met le contenu de l'element HTML datalist (qui est vide) dans la variable datalist.
 const datalist = document.getElementById("books");
+let isBookAvailable = false;
+let chosenBook;
+let cart = [];
+
 
 booksList.forEach(book => {
     const option = document.createElement("option");
@@ -16,20 +19,8 @@ booksList.forEach(book => {
 });
 
 
-// document.getElementById("inputValue").addEventListener("submit", getBook)
+document.querySelector("form").addEventListener("submit", getBook);
 
-let isBookAvailable = false;
-let chosenBook;
-let cart = [];
-
-
-document.getElementById("buttonId").addEventListener("submit", getBook); 
-
-function test(event) {
-    event.preventDefault()
-    console.log(event.target.value)
-    console.log(form)
-}
 
 function getBook(event) {
     event.preventDefault()
@@ -63,7 +54,9 @@ const displayCart = document.getElementById("cart")
 function addToCart() {
     cart.push(chosenBook);
     console.log("cart:",cart)
+    console.log(`${chosenBook.title}, ${chosenBook.price}$`)
     const li = document.createElement("li");
-    li.value = `${chosenBook.title}, ${chosenBook.price}`;
+    li.innerHTML = `${chosenBook.title}, ${chosenBook.price}`;
+    displayCart.appendChild(li);
 }
 
