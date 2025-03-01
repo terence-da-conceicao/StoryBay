@@ -106,5 +106,18 @@ function deleteItem(event, bookToRemove) {
     }
 }
 
+/* offers : 
+- 5 % de réduction sur chaque livre
+- 15% de réduction sur le panier total
+- Tous les 100€, 12€ sont déduits.
+
+
+- mettre en place un bouton pour valider le panier. Cela affiche le 
+prix total sans réductions,
+ainsi qu'un text avec els réductions, et le prix avec réduction! Et un petit bouton
+acheter pour la route.
+
+ce serait bien de faire 2 pages, une pour choisir ses livres et une pour le panier */
+
 
 
