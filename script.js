@@ -145,8 +145,11 @@ function getTotal(){
 
 
 function displayReducedTotal() {
-    // document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal}€`
-    let cheapestCart = getCheapestCart()
+    let { cheapestCart, reducedTotal } = getCheapestCart()
+    document.getElementById("calcul").innerHTML = "Calcul de vos réductions...";
+    
+    document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal}€`
+
 }
 
 
@@ -154,15 +157,21 @@ function getCheapestCart() {
     let { newCart, reducedTotal } = applyReduce1();
     console.log("total avec réduction dans getCheapestCart():",reducedTotal)
     console.log("cart avec réduction1: ",newCart);
-    return newCart
+    return { newCart, reducedTotal }
 }
 
 
 function applyReduce1() {
+    let reducedTotal = 0;
     const percentage = offers.offers[0].value / 100; //on récupère la valeur correspondant à 0,05
-    const newCart = cart.map((book) => ({...book, price: book.price * (1-percentage)}));
+    const newCart = cart.map((book) => ({
+        ...book, 
+        price: parseInt((book.price * (1-percentage)).toFixed(2))
+    }));
     
-    let reducedTotal = newCart.reduce((acc, book) => acc + book.price);
+    newCart.forEach( (book) => reducedTotal += book.price)
+
+
 
     console.log("total avec réduction dans applyReduce1():",reducedTotal)
     return { newCart, reducedTotal }
