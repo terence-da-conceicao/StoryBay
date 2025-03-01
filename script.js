@@ -5,7 +5,7 @@ let chosenBook;
 let cart = [];
 let cartText = document.getElementById("cartText");
 const viewCart = document.getElementById("viewCart");
-
+let total = 0;
 
 
 
@@ -117,7 +117,21 @@ function goToTotal() {
     if (displayTotal.style.display === "none") {
         displayTotal.style.display = "block";
     }
+    getTotal()
+    displayTotal.innerHTML = `Total : ${total}€`
 }
+
+function getTotal(){
+    total = 0
+    console.log("cart : ", cart)
+    cart.forEach( (item) => 
+        total += item.price
+    )
+    console.log(total)
+}
+
+
+
 
 // FAIRE EXEMPLE 2 livres 30 et 35€ = panier de 50€ avec réductions
 
