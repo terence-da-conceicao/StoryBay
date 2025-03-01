@@ -106,6 +106,9 @@ function deleteItem(event, bookToRemove) {
     }
 }
 
+// FAIRE EXEMPLE 2 livres 30 et 35€ = panier de 50€ avec réductions
+
+
 /* offers : 
 - 5 % de réduction sur chaque livre
 - 15% de réduction sur le panier total
