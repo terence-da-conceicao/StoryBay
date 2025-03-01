@@ -1,3 +1,15 @@
 #buyBook {
     display:none;
 }
+
+#remove {
+    margin-left: 10px;
+    width: 40px;
+    height: 20px;
+    font-size: 70%;
+    padding: 0;
+}
+
+#viewCart {
+    display: none;
+}
