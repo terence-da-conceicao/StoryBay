@@ -4,7 +4,7 @@ let isBookAvailable = false;
 let chosenBook;
 let cart = [];
 let cartText = document.getElementById("cartText");
-const viewCart = document.getElementById("cart");
+const viewCart = document.getElementById("viewCart");
 
 
 
@@ -42,7 +42,6 @@ async function createDatalist() {
 }
 
 
-
 document.querySelector("form").addEventListener("submit", getBook);
 
 function getBook(event) {
@@ -54,8 +53,10 @@ function getBook(event) {
         if (inputValue === loweredBook) {
             isBookAvailable = true;
             chosenBook = booksList[i];
+            console.log(chosenBook)
             createBookCard(chosenBook);
             return booksList[i].title
+        
         }
     }
     if (!isBookAvailable) {
@@ -72,9 +73,9 @@ function createBookCard(book){
 document.getElementById("cartControls").addEventListener("click", event => {
     event.preventDefault();
     cart.push(chosenBook);
-    console.log("cart : ",cart)
     displayCart()
 })
+
 
 function displayCart() {
     if (viewCart.style.display === "none") {
@@ -85,29 +86,40 @@ function displayCart() {
 
 function displayItem() {
     const li = document.createElement("li");
-    li.innerHTML = `${chosenBook.title}, ${chosenBook.price}`;
+    li.innerHTML = `${chosenBook.title}, ${chosenBook.price}€`;
 
     const remove = document.createElement("button");
     remove.innerText = 'Retirer';
-    remove.addEventListener("click", (event) => deleteItem(event, chosenBook)); // Passe l'event et le livre
-
+    remove.id = "remove"
+    remove.addEventListener("click", (event) => deleteItem(event, chosenBook));
     li.appendChild(remove);
-    viewCart.appendChild(li);
+
+    items.appendChild(li);
 }
 
 function deleteItem(event, bookToRemove) {
-    const li = event.target.closest("li"); // Récupère le <li> contenant le bouton
-    const index = cart.indexOf(bookToRemove); // Trouve l'index dans le tableau
+    const li = event.target.closest("li");
+    const index = cart.indexOf(bookToRemove);
 
-    if (index !== -1) {
-        cart.splice(index, 1); // Supprime du tableau
-        li.remove(); // Supprime du DOM
-        console.log("Nouveau panier :", cart);
+    if (index < -1 || index > cart.length-1) {
+        console.log("problème d'index")
+    } else {
+        cart.splice(index, 1);
+        li.remove();
+    }
+}
+
+
+document.getElementById("validate").addEventListener("click", goToTotal);
+
+function goToTotal() {
+    let displayTotal = document.getElementById("displayTotal");
+    if (displayTotal.style.display === "none") {
+        displayTotal.style.display = "block";
     }
 }
 
 // FAIRE EXEMPLE 2 livres 30 et 35€ = panier de 50€ avec réductions
-
 
 /* offers : 
 - 5 % de réduction sur chaque livre

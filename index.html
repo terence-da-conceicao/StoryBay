@@ -8,28 +8,32 @@
     <title>Henri Pottier Store</title>
 </head>
 <body>
-
     <form>
         <label for="inputValue">Recherchez un livre : </label>
         <input type="search" id="inputValue" list="books" required>
         <button type="submit" id="buttonId">Rechercher</button>
     </form>
-    
-            <!-- <button type="button" id="triggerFunction">Envoyer</button> -->
 
+    <datalist id="books">
+    </datalist>
+
+    <p id="bookChoice"></p> <!--nom du livre selectionné-->
     <div id="buyBook">
-        <p id="bookChoice"></p>
         <button type="button" id="cartControls">Ajouter au panier</button>
     </div>
     <br>
 
-    <div id="cartText">Votre panier :
-        <ul id="cart">
+    <div id="viewCart" style="display:none">
+        <div id="cartText">Votre panier :</div>
+        <ul id="items">
         </ul>
+        <button type="button" id="validate">Valider le panier</button>
     </div>
 
-    <datalist id="books">
-    </datalist>
+    <div id="displayTotal" style="display:none">
+        <h3 id ="total">total : </h3>
+
+    </div>
 
 </body>
 </html>

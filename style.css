@@ -13,3 +13,7 @@
 #viewCart {
     display: none;
 }
+
+#displayTotal {
+    display: none;
+}

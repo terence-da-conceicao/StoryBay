@@ -1,7 +1,8 @@
 [
-        {"title": "Henri Pottier 1", "price": 10},
-        {"title": "Henri Pottier 2", "price": 10},
-        {"title": "Henri Pottier 3", "price": 10},
-        {"title": "Henri Pottier 4", "price": 10},
-        {"title": "Henri Pottier 5", "price": 10}
+        {"title": "Henri Pottier et l'Ecole des Sorciers", "price": 30},
+        {"title": "Henri Pottier et la Chambre de Secrets", "price": 35},
+        {"title": "Henri Pottier et le Prisonnier d'Azkaban", "price": 33},
+        {"title": "Henri Pottier et la Coupe de Feu", "price": 30},
+        {"title": "Henri Pottier et le Prince de Sang-mêlé", "price": 35},
+        {"title": "Henri Pottier et les Reliques de la Mort", "price": 35}
 ]
