@@ -160,9 +160,10 @@ function displayReducedTotal() {
 
 function getCheapestCart() {
     let { newCart, reducedTotal } = applyReduce1();
-    console.log("total avec réduction dans getCheapestCart():",reducedTotal)
+    const reducedTotal2 = applyReduce2(reducedTotal);
+    console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
     console.log("cart avec réduction1: ",newCart);
-    return { newCart, reducedTotal }
+    return { newCart, reducedTotal: reducedTotal2 }
 }
 
 
@@ -175,15 +176,17 @@ function applyReduce1() {
     }));
     
     newCart.forEach( (book) => reducedTotal += book.price)
-
-
-
     console.log("total avec réduction dans applyReduce1():",reducedTotal)
     return { newCart, reducedTotal }
 }
 
 
 
+function applyReduce2(total) {
+    const minus = offers.offers[1].value / 100; 
+    const newTotal = total * (1 - minus)
+    return newTotal
+}
 
 
 
