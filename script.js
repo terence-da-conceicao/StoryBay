@@ -84,17 +84,17 @@ function displayCart() {
     if (viewCart.style.display === "none") {
         viewCart.style.display = "block";
     }
-    displayItem()
+    displayItem(chosenBook)
 }
 
-function displayItem() {
+function displayItem(book) {
     const li = document.createElement("li");
-    li.innerHTML = `${chosenBook.title}, ${chosenBook.price}€`;
+    li.innerHTML = `${book.title}, ${book.price}€`;
 
     const remove = document.createElement("button");
     remove.innerText = 'Retirer';
     remove.id = "remove"
-    remove.addEventListener("click", (event) => deleteItem(event, chosenBook));
+    remove.addEventListener("click", (event) => deleteItem(event, book));
     li.appendChild(remove);
 
     items.appendChild(li);
@@ -145,11 +145,16 @@ function getTotal(){
 
 
 function displayReducedTotal() {
-    let { cheapestCart, reducedTotal } = getCheapestCart()
+    let { newCart, reducedTotal } = getCheapestCart()
+    let ul = document.getElementById("reductionsDetails")
     document.getElementById("calcul").innerHTML = "Calcul de vos réductions...";
-    
+    for (let i = 0; i < newCart.length; i++) {
+        console.log(newCart[i])
+        const li = document.createElement("li");
+        li.innerHTML = `${newCart[i].title}, ${newCart[i].price}€`;
+        ul.appendChild(li)
+    }
     document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal}€`
-
 }
 
 
