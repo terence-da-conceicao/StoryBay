@@ -85,24 +85,26 @@ function displayCart() {
 
 function displayItem() {
     const li = document.createElement("li");
-    let indexBook = cart.length-1;
-    li.dataset.index = indexBook;
     li.innerHTML = `${chosenBook.title}, ${chosenBook.price}`;
-    viewCart.appendChild(li);
-
 
     const remove = document.createElement("button");
     remove.innerText = 'Retirer';
-    let removeButton = document.getElementById("removeId")
-    removeButton.addEventListener("click", deleteItem);
-    li.appendChild(remove)
+    remove.addEventListener("click", (event) => deleteItem(event, chosenBook)); // Passe l'event et le livre
+
+    li.appendChild(remove);
+    viewCart.appendChild(li);
+}
+
+function deleteItem(event, bookToRemove) {
+    const li = event.target.closest("li"); // Récupère le <li> contenant le bouton
+    const index = cart.indexOf(bookToRemove); // Trouve l'index dans le tableau
+
+    if (index !== -1) {
+        cart.splice(index, 1); // Supprime du tableau
+        li.remove(); // Supprime du DOM
+        console.log("Nouveau panier :", cart);
+    }
 }
 
 
-function deleteItem(event) {
-    const li = event.target.closest("li");
-    const indexBook = parseInt(li.dataset.index);
-    cart.splice(indexBook ,1)
-    li.remove()
-}
 
