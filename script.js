@@ -5,7 +5,10 @@ let chosenBook;
 let cart = [];
 let cartText = document.getElementById("cartText");
 const viewCart = document.getElementById("viewCart");
-let total = 0;
+// let total = 0;
+let displayTotalElement = document.getElementById("displayTotalElement");
+let reducedTotal = 0;
+let total = 0
 
 
 
@@ -110,26 +113,65 @@ function deleteItem(event, bookToRemove) {
 }
 
 
-document.getElementById("validate").addEventListener("click", goToTotal);
+document.getElementById("validate").addEventListener("click", displayAllTotals);
 
-function goToTotal() {
-    let displayTotal = document.getElementById("displayTotal");
-    if (displayTotal.style.display === "none") {
-        displayTotal.style.display = "block";
+function displayAllTotals() {
+    if (displayTotalElement.style.display === "none") {
+        displayTotalElement.style.display = "block";
     }
-    getTotal()
-    displayTotal.innerHTML = `Total : ${total}€`
+    displayTotal()
+    displayReducedTotal()
+}
+
+function displayTotal() {
+    total = getTotal();
+    displayTotalElement.innerHTML = `Total : ${total}€`
 }
 
 function getTotal(){
-    total = 0
-    console.log("cart : ", cart)
+    let total = 0
     cart.forEach( (item) => 
         total += item.price
     )
-    console.log(total)
+    return total
 }
 
+
+
+
+
+
+
+function displayReducedTotal() {
+    let reducedTotal = getReducedTotal();
+    document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal}€`
+
+}
+
+
+function getReducedTotal() {
+    let reducedTotal = 0;
+    if (total > 100) {
+        let reduction100 = ((total-(total%100))/100)*12
+        let reducedTotal = total-reduction100
+        console.log("vous avez droit à une réduction de", reduction100,"Vous payez ", reducedTotal)
+    }
+    return reducedTotal
+}
+
+
+
+
+
+
+
+// function displayReductionsDetails() {
+    //     let displayReducedTotal = document.getElementById("displayReducedTotal");
+    //     displayReducedTotal = `Voici le détail de vos réductions. 
+    //     <\n> 5 % de réduction sur chaque livre. 
+    //     <\n> 15% de réduction sur le panier total.
+    //     <\n> Tous les 100€, 12€ sont déduits..`
+    // }
 
 
 
