@@ -1,3 +1,20 @@
+body {
+    color: rgb(136, 130, 130);
+    background-color: black;
+}
+
+#cartControls {
+    background-color: rgb(189, 166, 166);
+}
+
+#buttonId{
+    background-color: rgb(189, 166, 166);
+}
+
+#inputValue{
+    background-color: rgb(189, 166, 166);
+}
+
 #buyBook {
     display:none;
 }

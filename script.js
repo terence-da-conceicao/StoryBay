@@ -123,6 +123,8 @@ function displayAllTotals() {
     displayReducedTotal()
 }
 
+
+
 function displayTotal() {
     total = getTotal();
     displayTotalElement.innerHTML = `Total : ${total}€`
@@ -143,21 +145,45 @@ function getTotal(){
 
 
 function displayReducedTotal() {
-    let reducedTotal = getReducedTotal();
-    document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal}€`
-
+    // document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal}€`
+    let cheapestCart = getCheapestCart()
 }
 
 
-function getReducedTotal() {
-    let reducedTotal = 0;
-    if (total > 100) {
-        let reduction100 = ((total-(total%100))/100)*12
-        let reducedTotal = total-reduction100
-        console.log("vous avez droit à une réduction de", reduction100,"Vous payez ", reducedTotal)
-    }
-    return reducedTotal
+function getCheapestCart() {
+    let { newCart, reducedTotal } = applyReduce1();
+    console.log("total avec réduction dans getCheapestCart():",reducedTotal)
+    console.log("cart avec réduction1: ",newCart);
+    return newCart
 }
+
+
+function applyReduce1() {
+    const percentage = offers.offers[0].value / 100; //on récupère la valeur correspondant à 0,05
+    const newCart = cart.map((book) => ({...book, price: book.price * (1-percentage)}));
+    
+    let reducedTotal = newCart.reduce((acc, book) => acc + book.price);
+
+    console.log("total avec réduction dans applyReduce1():",reducedTotal)
+    return { newCart, reducedTotal }
+}
+
+
+
+
+
+
+
+
+// function getTotalWithModulo() {
+//     let totalWithModulo = 0;
+//     if (total > 100) {
+//         let reduction100 = ((total-(total%100))/100)*12
+//         let totalWithModulo = total-reduction100
+//         console.log("vous avez droit à une réduction de", reduction100,"Vous payez ", reducedTotal)
+//     }
+//     return totalWithModulo
+// }
 
 
 
