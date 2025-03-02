@@ -161,9 +161,17 @@ function displayReducedTotal() {
 function getCheapestCart() {
     let { newCart, reducedTotal } = applyReduce1();
     const reducedTotal2 = applyReduce2(reducedTotal);
-    console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
-    console.log("cart avec réduction1: ",newCart);
-    return { newCart, reducedTotal: reducedTotal2 }
+    console.log(reducedTotal%100)
+    if ((reducedTotal%100) == 0) {
+        const reducedTotal3 = applyReduce3(reducedTotal2)
+        console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
+        console.log("cart avec réduction1: ",newCart);
+        return reducedTotal3 
+    } else {
+        console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
+        console.log("cart avec réduction1: ",newCart);
+        return { newCart, reducedTotal: reducedTotal2 }
+    }
 }
 
 
@@ -189,8 +197,13 @@ function applyReduce2(total) {
 }
 
 
-
-
+function applyReduce3(total) {
+    const slice = offers.offers[2]
+    const saved = ((total-(total%slice.sliceValue))/slice.sliceValue)* slice.value;
+    let newTotal = total-saved
+    console.log("vous économisez ",saved, " sur un total de ", total, "et payez donc", newTotal, "€." )
+    return newTotal
+}
 
 // function getTotalWithModulo() {
 //     let totalWithModulo = 0;
