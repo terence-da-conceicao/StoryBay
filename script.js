@@ -1,38 +1,29 @@
-let booksList 
-let offers
+import { useData } from "./src/data/dataController.js"
+
+let { offers, booksList } = await useData();
+//vaut-il mieux faire deux fonction séparées pour offers et booksList
+//ou tout importer dans la même comme ici? 
+
+
+console.log(offers, booksList)
+export async function getData() {
+    offers = await fetchData('/src/data/offers.json');
+    booksList = await fetchData('src/data/books.json');
+}
+console.log(booksList)
+
+
 let isBookAvailable = false;
 let chosenBook;
 let cart = [];
 let cartText = document.getElementById("cartText");
 const viewCart = document.getElementById("viewCart");
-// let total = 0;
 let displayTotalElement = document.getElementById("displayTotalElement");
 let reducedTotal = 0;
 let total = 0
 
 
 
-
-async function fetchData(data) {
-    try {
-        const response = await fetch(data);
-        if (!response.ok) {
-            throw new Error(`Response status : ${response.status}`);
-        }
-        let jsonData = await response.json();
-        return jsonData;
-    } catch(error) {
-        console.error(error.message);
-    }
-}
-
-
-async function getData() {
-    offers = await fetchData('offers.json');
-    booksList = await fetchData('books.json');
-    createDatalist();
-}
-getData()
 
 
 async function createDatalist() {
@@ -44,7 +35,7 @@ async function createDatalist() {
     };
 }
 
-
+createDatalist();
 document.querySelector("form").addEventListener("submit", getBook);
 
 function getBook(event) {
@@ -79,7 +70,7 @@ document.getElementById("cartControls").addEventListener("click", event => {
     displayCart()
 })
 
-
+//affiche le panier sans réduction (change le display)
 function displayCart() {
     if (viewCart.style.display === "none") {
         viewCart.style.display = "block";
@@ -87,6 +78,8 @@ function displayCart() {
     displayItem(chosenBook)
 }
 
+
+//affiche chaque ligne du panier sans réduction
 function displayItem(book) {
     const li = document.createElement("li");
     li.innerHTML = `${book.title}, ${book.price}€`;
@@ -100,6 +93,7 @@ function displayItem(book) {
     items.appendChild(li);
 }
 
+//créer un bouton pour effacer une ligne et retirer l'article du panier
 function deleteItem(event, bookToRemove) {
     const li = event.target.closest("li");
     const index = cart.indexOf(bookToRemove);
@@ -114,6 +108,16 @@ function deleteItem(event, bookToRemove) {
 
 
 document.getElementById("validate").addEventListener("click", displayAllTotals);
+
+
+function getTotal(){
+    let total = 0
+    cart.forEach( (item) => 
+        total += item.price
+    )
+    return total
+}
+
 
 function displayAllTotals() {
     if (displayTotalElement.style.display === "none") {
@@ -130,18 +134,6 @@ function displayTotal() {
     displayTotalElement.innerHTML = `Total : ${total}€`
 }
 
-function getTotal(){
-    let total = 0
-    cart.forEach( (item) => 
-        total += item.price
-    )
-    return total
-}
-
-
-
-
-
 
 
 function displayReducedTotal() {
@@ -154,14 +146,21 @@ function displayReducedTotal() {
         li.innerHTML = `${newCart[i].title}, ${newCart[i].price}€`;
         ul.appendChild(li)
     }
-    document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal}€`
+    // console.log("vous économisez ",saved, " sur un total de ", total, "et payez donc", newTotal, "€." )
+    document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal.toFixed(2)}€`
 }
+
+
+
+// function getReducedTotal()
 
 
 function getCheapestCart() {
     let { newCart, reducedTotal } = applyReduce1();
     const reducedTotal2 = applyReduce2(reducedTotal);
     console.log(reducedTotal%100)
+
+
     if ((reducedTotal%100) == 0) {
         const reducedTotal3 = applyReduce3(reducedTotal2)
         console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
@@ -176,7 +175,7 @@ function getCheapestCart() {
 
 
 function applyReduce1() {
-    let reducedTotal = 0;
+    console.log("verif si reducedTotal ets bien globale :", reducedTotal)
     const percentage = offers.offers[0].value / 100; //on récupère la valeur correspondant à 0,05
     const newCart = cart.map((book) => ({
         ...book, 
@@ -201,19 +200,8 @@ function applyReduce3(total) {
     const slice = offers.offers[2]
     const saved = ((total-(total%slice.sliceValue))/slice.sliceValue)* slice.value;
     let newTotal = total-saved
-    console.log("vous économisez ",saved, " sur un total de ", total, "et payez donc", newTotal, "€." )
     return newTotal
 }
-
-// function getTotalWithModulo() {
-//     let totalWithModulo = 0;
-//     if (total > 100) {
-//         let reduction100 = ((total-(total%100))/100)*12
-//         let totalWithModulo = total-reduction100
-//         console.log("vous avez droit à une réduction de", reduction100,"Vous payez ", reducedTotal)
-//     }
-//     return totalWithModulo
-// }
 
 
 
@@ -236,15 +224,4 @@ function applyReduce3(total) {
 /* offers : 
 - 5 % de réduction sur chaque livre
 - 15% de réduction sur le panier total
-- Tous les 100€, 12€ sont déduits.
-
-
-- mettre en place un bouton pour valider le panier. Cela affiche le 
-prix total sans réductions,
-ainsi qu'un text avec els réductions, et le prix avec réduction! Et un petit bouton
-acheter pour la route.
-
-ce serait bien de faire 2 pages, une pour choisir ses livres et une pour le panier */
-
-
-
+- Tous les 100€, 12€ sont déduits. */
