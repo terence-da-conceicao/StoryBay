@@ -1,7 +1,3 @@
-export let booksList
-export let offers
-
-
 async function fetchData(data) {
     try {
         const response = await fetch(data);
@@ -16,10 +12,7 @@ async function fetchData(data) {
 }
 
 
-async function getData() {
-    offers = await fetchData('/src/data/offers.json');
-    booksList = await fetchData('src/data/books.json');
+export async function getData(data) {
+    let list = await fetchData(data);
+    return list
 }
-
-
-await getData()
