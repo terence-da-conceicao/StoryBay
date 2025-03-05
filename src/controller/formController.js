@@ -1,36 +1,33 @@
-import { booksList, isBookAvailable, selectedBook } from "../script.js"
+/* recevoir le choix de l'utilisateur, vérifier s'il est dans la liste
+de livres.
+Si oui:
+ - isBookAvailable (état) = true
+ - selectedBook (état) prend la valeur du livre reçu par l'input
+ - la fonction retourne le titre du livre.*/
 
 
-//gérer l'import de booksList pour les options de livres
+ //J'ai déplacé l'écouteur d'evenement du bouton du formulaire dans le coprs du script.js
+ //pour des raisons d'accessibilité à ce bouton. J ene sais
 
 
-
-
-
-
-
-
-//recevoir le choix de l'utilisateur, vérifier s'il est dans la liste
-//de livres.
-//Si oui:
-// - isBookAvailable (état) = true
-// - selectedBook (état) prend la valeur du livre reçu par l'input
-// - la fonction retourne le titre du livre.
-export function getBook(event) {
-    event.preventDefault()
+export function getSelectedBook(book, list) {
+    // event.preventDefault()
+    console.log("soumis")
     const inputValue = document.getElementById("inputValue").value.toLowerCase();
 
-    for (let i = 0; i < booksList.length; i++) {
-        let loweredBook = booksList[i].title.toLowerCase()
+    for (let i = 0; i < list.length; i++) {
+        let loweredBook = list[i].title.toLowerCase()
         if (inputValue === loweredBook) {
-            isBookAvailable = true;
-            selectedBook = booksList[i];
-            console.log(selectedBook)
-            return booksList[i].title
-        
+            book = list[i]
+            console.log("book : ",book)
+            // return list[i].title
+            return book
         }
     }
-    if (!isBookAvailable) {
-        document.getElementById("bookChoice").innerHTML = "Ce livre n'est pas disponible.";
+}
+
+export function setBookState(state) {
+    if (!state) {
+        state = true;
     }
 }

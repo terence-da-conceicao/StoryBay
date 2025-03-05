@@ -1,7 +1,9 @@
 import { getData } from "./src/controller/dataController.js"
 import { createDatalist } from "./src/view/datalist.js"
+import { bookState } from "./src/controller/selectBookController.js"
+import { displayBookState } from "./src/view/formView.js"
 // import { createBookCard } from "./src/controller/selectBookController.js"
-// import { getBook } from ".src/controller/formController.js"
+import { getSelectedBook } from "./src/controller/formController.js"
 
 //Le HTML est visible. On a juste un champ de texte et un bouton Rechercher.
 //Une liste d'options est présentée. Il faut donc récupérer les infos de livres dispo (models), les gérer (controlelrs) et les afficher (view)
@@ -10,13 +12,22 @@ import { createDatalist } from "./src/view/datalist.js"
 
 
 
-let booksList = await getData('src/model/books.json')  //récupération des models books et offers.//idéalement il faudrait les passer avec des arguemnts, non?
-let offers = await getData('src/model/offers.json')
+const booksList = await getData('src/model/books.json')  //récupération des models books et offers.//idéalement il faudrait les passer avec des arguemnts, non?
+const offers = await getData('src/model/offers.json')
+let isBookAvailable = false;
+let selectedBook;
+console.log("offers : ", offers)
+console.log("booksList : ", booksList)
 createDatalist(booksList) //affichage du model books sous la forme d'une datalist
 
 
-console.log("offers : ", offers)
-console.log("booksList : ", booksList)
+document.querySelector("form").addEventListener("submit", (event) => {
+    event.preventDefault(),
+    selectedBook = getSelectedBook(selectedBook, booksList)
+    console.log("selectedBook:",selectedBook)
+    console.log(typeof selectedBook) //je pensais que c'était pas possible de faire ça???
+    bookState(selectedBook, isBookAvailable)
+});
 
 
 
