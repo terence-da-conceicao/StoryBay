@@ -1,21 +1,21 @@
-// import { selectedBook, displayCart } from "../script.js"
-// import { displayCart, displayItem } from "../view/cart.js"
-import { setBookState } from "../controller/formController.js"
-import { displayBookState } from "../view/formView.js"
+
+// import { displayBookState } from "../view/formView.js"
 
 
-//display
+
 
 //cette fonction 'na rien à faire là, mais je vois pas comment la gérer autrement
 //car il faut appeler cette condition lors du submit. (ou utiliser async await???)
-export function bookState(book, state) {
-    if (book) {
-        setBookState(state);
-        displayBookState(state)
-        console.log("selectedBook : ",book)
-        console.log("isBookAvailable : ",state)
-    }
+export function setBookState(book) {
+    let state = book? true : false;
+    return state
 }
+
+
+
+
+
+
 
 //affiche nom du livre selectionné ainsi que le bouton pour l'ajouter au panier
 // export function createBookCard(book){

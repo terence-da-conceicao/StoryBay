@@ -1,7 +1,7 @@
 import { getData } from "./src/controller/dataController.js"
 import { createDatalist } from "./src/view/datalist.js"
-import { bookState } from "./src/controller/selectBookController.js"
-import { displayBookState } from "./src/view/formView.js"
+import { setBookState } from "./src/controller/selectedBookController.js"
+import { displayBookState } from "./src/view/selectedBookView.js"
 // import { createBookCard } from "./src/controller/selectBookController.js"
 import { getSelectedBook } from "./src/controller/formController.js"
 
@@ -20,16 +20,13 @@ console.log("offers : ", offers)
 console.log("booksList : ", booksList)
 createDatalist(booksList) //affichage du model books sous la forme d'une datalist
 
-
+//Il y a trop de logique ici...
 document.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault(),
     selectedBook = getSelectedBook(selectedBook, booksList)
-    console.log("selectedBook:",selectedBook)
-    console.log(typeof selectedBook) //je pensais que c'était pas possible de faire ça???
-    bookState(selectedBook, isBookAvailable)
+    isBookAvailable = setBookState(selectedBook)
+    displayBookState(isBookAvailable, selectedBook)
 });
-
-
 
 
 

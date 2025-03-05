@@ -25,9 +25,3 @@ export function getSelectedBook(book, list) {
         }
     }
 }
-
-export function setBookState(state) {
-    if (!state) {
-        state = true;
-    }
-}
