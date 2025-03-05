@@ -1,16 +1,26 @@
-import { useData } from "./src/data/dataController.js"
+import { offers, booksList } from "./src/data/dataController.js"
 
-let { offers, booksList } = await useData();
-//vaut-il mieux faire deux fonction séparées pour offers et booksList
-//ou tout importer dans la même comme ici? 
+console.log("offers : ", offers)
+console.log("booksList : ", booksList)
 
 
-console.log(offers, booksList)
-export async function getData() {
-    offers = await fetchData('/src/data/offers.json');
-    booksList = await fetchData('src/data/books.json');
+
+function createDatalist() {
+    if (!booksList) {
+        console.log("booksList n'existe pas")
+        return
+    }
+    const datalist = document.getElementById("books");
+
+        for (const book in booksList) {
+        const option = document.createElement("option");
+        option.value = booksList[book].title;
+        datalist.appendChild(option);
+    };
 }
-console.log(booksList)
+
+createDatalist()
+
 
 
 let isBookAvailable = false;
@@ -23,17 +33,6 @@ let reducedTotal = 0;
 let total = 0
 
 
-
-
-
-async function createDatalist() {
-    const datalist = document.getElementById("books");
-        for (book in booksList) {
-        const option = document.createElement("option");
-        option.value = booksList[book].title;
-        datalist.appendChild(option);
-    };
-}
 
 createDatalist();
 document.querySelector("form").addEventListener("submit", getBook);

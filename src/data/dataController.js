@@ -1,8 +1,8 @@
-let booksList
-let offers
+export let booksList
+export let offers
 
 
-export async function fetchData(data) {
+async function fetchData(data) {
     try {
         const response = await fetch(data);
         if (!response.ok) {
@@ -23,9 +23,3 @@ async function getData() {
 
 
 await getData()
-
-
-export function useData() {
-    
-    return { booksList, offers}
-}
