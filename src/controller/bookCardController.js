@@ -1,29 +1,22 @@
+import { displayCart } from "../view/cartView.js"
+
 export function setBookState(book) {
     let state = book? true : false;
     return state
 }
 
+//ce n'est pas logique de mettre displayCart() ici
+// car c'est du view et pas du controller. Mais il faut bien
+// que le displayCart() soit déclenché par le bohton,
+// c'est chelou de mettre un état sur le bouton et de lancer
+//la fonction depuis script avec une condition??
+
 export function initButton(button, cart, book) {
     button.addEventListener("click", event => {
         event.preventDefault();
         cart.push(book);
+        displayCart(book);
         console.log(cart)
-        // displayCart()
     })
 }
-
-
-
-//affiche nom du livre selectionné ainsi que le bouton pour l'ajouter au panier
-// export function createBookCard(book){
-//     document.getElementById("selectedBookTitle").innerHTML = `<h3>${book.title}</h3>`;
-//     document.getElementById("buyBook").style.display = "block";
-
-//     //Le bouton addCart gère l'ajout du livre au panier et affiche le panier.
-//     document.getElementById("addCart").addEventListener("click", event => {
-//         event.preventDefault();
-//         cart.push(selectedBook);
-//         displayCart()
-//     })
-// }
 

@@ -1,6 +1,3 @@
-//affiche nom du livre selectionné ainsi que le bouton pour l'ajouter au panier
-
-
 export function displayBookCard(state, book, button){
     if (state === false) {
         document.getElementById("selectedBookTitle").innerHTML = "Ce livre n'est pas disponible.";

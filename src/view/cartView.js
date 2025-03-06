@@ -1,22 +1,11 @@
-import { cart } from "../script.js"
-
-
-const viewCart = document.getElementById("viewCart");
-let selectedBook;
-
-
-
-
-
-
-
-
 //affiche le panier sans réduction (change le display)
-export function displayCart() {
+export function displayCart(book) {
+    const viewCart = document.getElementById("viewCart");
+
     if (viewCart.style.display === "none") {
         viewCart.style.display = "block";
     }
-    displayItem(selectedBook)
+    displayItem(book)
 }
 
 
@@ -36,15 +25,15 @@ export function displayItem(book) {
 }
 
 
-//créer un bouton pour effacer une ligne et retirer l'article du panier
-function deleteItem(event, bookToRemove) {
-    const li = event.target.closest("li");
-    const index = cart.indexOf(bookToRemove);
+// //créer un bouton pour effacer une ligne et retirer l'article du panier
+// function deleteItem(event, bookToRemove) {
+//     const li = event.target.closest("li");
+//     const index = cart.indexOf(bookToRemove);
 
-    if (index < -1 || index > cart.length-1) {
-        console.log("problème d'index")
-    } else {
-        cart.splice(index, 1);
-        li.remove();
-    }
-}
+//     if (index < -1 || index > cart.length-1) {
+//         console.log("problème d'index")
+//     } else {
+//         cart.splice(index, 1);
+//         li.remove();
+//     }
+// }
