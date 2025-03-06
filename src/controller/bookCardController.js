@@ -1,19 +1,16 @@
-
-// import { displayBookState } from "../view/formView.js"
-
-
-
-
-//cette fonction 'na rien à faire là, mais je vois pas comment la gérer autrement
-//car il faut appeler cette condition lors du submit. (ou utiliser async await???)
 export function setBookState(book) {
     let state = book? true : false;
     return state
 }
 
-
-
-
+export function initButton(button, cart, book) {
+    button.addEventListener("click", event => {
+        event.preventDefault();
+        cart.push(book);
+        console.log(cart)
+        // displayCart()
+    })
+}
 
 
 

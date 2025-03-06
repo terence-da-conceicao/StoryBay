@@ -1,14 +1,8 @@
 import { getData } from "./src/controller/dataController.js"
 import { createDatalist } from "./src/view/datalist.js"
-import { setBookState } from "./src/controller/selectedBookController.js"
-import { displayBookState } from "./src/view/selectedBookView.js"
-// import { createBookCard } from "./src/controller/selectBookController.js"
+import { setBookState, initButton } from "./src/controller/bookCardController.js"
+import { displayBookCard } from "./src/view/bookCardView.js"
 import { getSelectedBook } from "./src/controller/formController.js"
-
-//Le HTML est visible. On a juste un champ de texte et un bouton Rechercher.
-//Une liste d'options est présentée. Il faut donc récupérer les infos de livres dispo (models), les gérer (controlelrs) et les afficher (view)
-//La liste des livres doit être présente dans le script.js afin de passer les fonctions avec ça en arguments.
-//booksListController a récupéré le contenu de books.json et l'a passé
 
 
 
@@ -16,17 +10,32 @@ const booksList = await getData('src/model/books.json')  //récupération des mo
 const offers = await getData('src/model/offers.json')
 let isBookAvailable = false;
 let selectedBook;
+let cart = [];
+
 console.log("offers : ", offers)
 console.log("booksList : ", booksList)
+
+
 createDatalist(booksList) //affichage du model books sous la forme d'une datalist
 
-//Il y a trop de logique ici...
+
 document.querySelector("form").addEventListener("submit", (event) => {
-    event.preventDefault(),
-    selectedBook = getSelectedBook(selectedBook, booksList)
-    isBookAvailable = setBookState(selectedBook)
-    displayBookState(isBookAvailable, selectedBook)
+    event.preventDefault(), 
+    gererLeLivre()
 });
+
+
+
+function gererLeLivre() {
+    selectedBook = getSelectedBook(selectedBook, booksList) //on récupère le contenu du formulaire (le livre) et on l'assigne à selectedBook
+    isBookAvailable = setBookState(selectedBook) //on modifie l'état du livre
+    let addButton = document.getElementById("addToCart");
+
+    displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
+    initButton(addButton, cart, selectedBook)
+}
+
+
 
 
 
