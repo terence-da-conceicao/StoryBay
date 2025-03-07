@@ -20,33 +20,25 @@ let addButton = document.getElementById("addToCart");
 
 createDatalist(booksList) //affichage du model books sous la forme d'une datalist
 
-
+//quand on recherche le livre et le soumet
 document.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault(), 
-    gererLeLivre()
-    console.log("check envoi form")
-});
-
-
-/*  changer le nom de la fonction
-    récupère le livre, update son état, rajoute bouton d'ajout,
-    et initialise sa logique, affiche le panier */
-function gererLeLivre() { //initSelectedBookLogic ?
-    selectedBook = getSelectedBook(selectedBook, booksList)
-    console.log("check gestion du livre") //on récupère le contenu du formulaire (le livre) et on l'assigne à selectedBook
-    isBookAvailable = setBookState(selectedBook) //on modifie l'état du livre
+    updateBook()
     displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
 
+});
+
+//update les infos du book choisi, update son état
+function updateBook() {
+    selectedBook = getSelectedBook(selectedBook, booksList)
+    isBookAvailable = setBookState(selectedBook) //on modifie l'état du livre
 }
 
-/*displayCart() change le style none de l'espace cart en block
-et ajoute une ligne par livre choisi */
+//quand on ajoute au panier
 addButton.addEventListener("click", (event) => {
         event.preventDefault();
         addToCart(selectedBook, cart)
-        displayCart(selectedBook)
-        console.log("cart : ",cart)
-        // selectedBook = "" //initialisation
+        displayCart(selectedBook)/* change le style none de l'espace cart en block et ajoute une ligne par livre choisi */
     }
 )
 
