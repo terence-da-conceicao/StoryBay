@@ -1,21 +1,33 @@
 import { removeItem, getTotal } from "../controller/cartController.js"
-
-
-
-
+import { displayCheapestCart } from "../view/cheapestCartView.js"
 
 export function displayCart(book, cart) {
     const cartCard = document.getElementById("cartCard");
     const index = cart.indexOf(book);
-    if (cartCard.style.display === "none") {
-        cartCard.style.display = "block";
-    }
+    displayElement(cartCard)
     displayItemCard(book, cart, index)
 }
 
 
+export function displayFinalTotal(cart, element, offers) {
+    console.log(offers)
+    displayElement(element); // l'espace où s'affiche le total
+    displayTotal(cart, element);
+    displayCheapestCart(cart, offers);
+}
 
-export function displayItemCard(book, cart, index) {
+
+
+export function displayElement(el) {
+    if (el.style.display === "none") {
+        el.style.display = "block";
+    }
+}
+
+
+
+
+function displayItemCard(book, cart, index) {
     const li = document.createElement("li");
     displayItemInfos(li, book);
     displayRemoveButton(li, index, cart, book)
@@ -48,19 +60,8 @@ function undisplayItem(line) {
 }
 
 
-
-
-export function displayAllTotals(cart, element) {
-    if (element.style.display === "none") {
-        element.style.display = "block";
-    }
-    displayTotal(cart, element)
-    // displayReducedTotal()
-}
-
-
-
 function displayTotal(cart, element) {
     let total = getTotal(cart);
     element.innerHTML = `Total : ${total}€`
 }
+

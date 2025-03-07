@@ -2,7 +2,7 @@ import { getData, getSelectedBook } from "./src/controller/formController.js"
 import { createDatalist } from "./src/view/formView.js"
 import { setBookState, addToCart } from "./src/controller/bookCardController.js"
 import { displayBookCard } from "./src/view/bookCardView.js"
-import { displayCart, displayAllTotals } from "./src/view/cartView.js"
+import { displayCart, displayFinalTotal } from "./src/view/cartView.js"
 
 
 
@@ -10,11 +10,14 @@ import { displayCart, displayAllTotals } from "./src/view/cartView.js"
 
 const booksList = await getData('src/model/books.json')  //récupération des models books et offers.//idéalement il faudrait les passer avec des arguemnts, non?
 const offers = await getData('src/model/offers.json')
+
+
 let isBookAvailable = false;
 let selectedBook;
 let cart = [];
-let addButton = document.getElementById("addToCart");
+
 const form = document.querySelector("form");
+let addButton = document.getElementById("addToCart");
 let checkoutButton = document.getElementById("checkoutButton");
 let displayTotalEl = document.getElementById("displayTotalEl");
 
@@ -46,7 +49,7 @@ addButton.addEventListener("click", (event) => {
 //Valider le panier
 checkoutButton.addEventListener("click", (event) => {
     event.preventDefault();
-    displayAllTotals(cart, displayTotalEl);
+    displayFinalTotal(cart, displayTotalEl, offers);
 });
 
 
@@ -67,23 +70,6 @@ checkoutButton.addEventListener("click", (event) => {
 
 
 
-
-
-
-
-// function displayReducedTotal() {
-//     let { newCart, reducedTotal } = getCheapestCart()
-//     let ul = document.getElementById("reductionsDetails")
-//     document.getElementById("calcul").innerHTML = "Calcul de vos réductions...";
-//     for (let i = 0; i < newCart.length; i++) {
-//         console.log(newCart[i])
-//         const li = document.createElement("li");
-//         li.innerHTML = `${newCart[i].title}, ${newCart[i].price}€`;
-//         ul.appendChild(li)
-//     }
-//     // console.log("vous économisez ",saved, " sur un total de ", total, "et payez donc", newTotal, "€." )
-//     document.getElementById("displayReducedTotalElement").innerHTML = `Total avec les réductions: ${reducedTotal.toFixed(2)}€`
-// }
 
 
 
