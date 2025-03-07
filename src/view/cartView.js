@@ -1,5 +1,6 @@
 //affiche le panier sans réduction (change le display)
 export function displayCart(book) {
+    console.log("définition displayCart dans cartView")
     const viewCart = document.getElementById("viewCart");
 
     if (viewCart.style.display === "none") {

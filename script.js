@@ -1,8 +1,8 @@
 import { getData } from "./src/controller/dataController.js"
-import { createDatalist } from "./src/view/datalist.js"
-import { setBookState, initButton } from "./src/controller/bookCardController.js"
-import { displayBookCard } from "./src/view/bookCardView.js"
 import { getSelectedBook } from "./src/controller/formController.js"
+import { createDatalist } from "./src/view/datalist.js"
+import { setBookState, addToCart } from "./src/controller/bookCardController.js"
+import { displayBookCard } from "./src/view/bookCardView.js"
 import { displayCart } from "./src/view/cartView.js"
 
 
@@ -11,11 +11,11 @@ const offers = await getData('src/model/offers.json')
 let isBookAvailable = false;
 let selectedBook;
 let cart = [];
-const viewCart = document.getElementById("viewCart");
+let addButton = document.getElementById("addToCart");
 
 
-console.log("offers : ", offers)
-console.log("booksList : ", booksList)
+// console.log("offers : ", offers)
+// console.log("booksList : ", booksList)
 
 
 createDatalist(booksList) //affichage du model books sous la forme d'une datalist
@@ -24,25 +24,31 @@ createDatalist(booksList) //affichage du model books sous la forme d'une datalis
 document.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault(), 
     gererLeLivre()
+    console.log("check envoi form")
 });
 
 
 /*  changer le nom de la fonction
     récupère le livre, update son état, rajoute bouton d'ajout,
     et initialise sa logique, affiche le panier */
-function gererLeLivre() {
-    selectedBook = getSelectedBook(selectedBook, booksList) //on récupère le contenu du formulaire (le livre) et on l'assigne à selectedBook
+function gererLeLivre() { //initSelectedBookLogic ?
+    selectedBook = getSelectedBook(selectedBook, booksList)
+    console.log("check gestion du livre") //on récupère le contenu du formulaire (le livre) et on l'assigne à selectedBook
     isBookAvailable = setBookState(selectedBook) //on modifie l'état du livre
-    let addButton = document.getElementById("addToCart");
-
     displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
-    initButton(addButton, cart, selectedBook)
+
 }
 
 /*displayCart() change le style none de l'espace cart en block
 et ajoute une ligne par livre choisi */
-
-
+addButton.addEventListener("click", (event) => {
+        event.preventDefault();
+        addToCart(selectedBook, cart)
+        displayCart(selectedBook)
+        console.log("cart : ",cart)
+        // selectedBook = "" //initialisation
+    }
+)
 
 
 

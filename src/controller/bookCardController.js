@@ -11,12 +11,9 @@ export function setBookState(book) {
 // c'est chelou de mettre un état sur le bouton et de lancer
 //la fonction depuis script avec une condition??
 
-export function initButton(button, cart, book) {
-    button.addEventListener("click", event => {
-        event.preventDefault();
-        cart.push(book);
-        displayCart(book);
-        console.log(cart)
-    })
+export function addToCart(book, cart) {
+    console.log("cart : ",cart)
+    console.log("book : ",book)
+    cart.push(book);
 }
 
