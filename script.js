@@ -37,7 +37,8 @@ function updateBook() {
 addButton.addEventListener("click", (event) => {
         event.preventDefault();
         addToCart(selectedBook, cart)
-        displayCart(selectedBook)/* change le style none de l'espace cart en block et ajoute une ligne par livre choisi */
+        displayCart(selectedBook, cart)/* change le style none de l'espace cart en block et ajoute une ligne par livre choisi */
+        console.log()
     }
 )
 

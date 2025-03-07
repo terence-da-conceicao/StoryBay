@@ -30,3 +30,10 @@ TodoList (backlog?):
 - Installer un vrai design avec une bibliothèque ou un truc genre TailWind
 
 - Relier le site à une API web pour avoir des noms de livres
+
+- Mieux comprendre les lignes de deleteItems()
+
+- Dans cartView, les fonctions ont quasiment toutes les mêmes arguments. Est-ce que je peux pas plutôt mettre ces élements en global dans ce fichier, et les modifier/utiliser directement dans le corps des fonctions, sans leur passer d'arguments? Pour la lisibilité et ça me semble plus logique.
+Mais cela veut dire que je dois réinitialiser les variables à chaque fois...
+
+- Est-ce que c'est bien d'avoir des paramètres qui ont des noms un peu génériques et d'auters qui ont le même nom que les arguments? Dois-je tout mettre en générique, ou tout mettre pareil que l'argument sauf quand la fonctino manipule plusieurs arguments différents?
