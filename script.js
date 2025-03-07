@@ -1,9 +1,11 @@
-import { getData } from "./src/controller/dataController.js"
-import { getSelectedBook } from "./src/controller/formController.js"
-import { createDatalist } from "./src/view/datalist.js"
+import { getData, getSelectedBook } from "./src/controller/formController.js"
+import { createDatalist } from "./src/view/formView.js"
 import { setBookState, addToCart } from "./src/controller/bookCardController.js"
 import { displayBookCard } from "./src/view/bookCardView.js"
-import { displayCart } from "./src/view/cartView.js"
+import { displayCart, displayAllTotals } from "./src/view/cartView.js"
+
+
+
 
 
 const booksList = await getData('src/model/books.json')  //récupération des models books et offers.//idéalement il faudrait les passer avec des arguemnts, non?
@@ -12,16 +14,17 @@ let isBookAvailable = false;
 let selectedBook;
 let cart = [];
 let addButton = document.getElementById("addToCart");
-
+const form = document.querySelector("form");
+let checkoutButton = document.getElementById("checkoutButton");
+let displayTotalEl = document.getElementById("displayTotalEl");
 
 // console.log("offers : ", offers)
 // console.log("booksList : ", booksList)
 
-
 createDatalist(booksList) //affichage du model books sous la forme d'une datalist
 
-//quand on recherche le livre et le soumet
-document.querySelector("form").addEventListener("submit", (event) => {
+//soumettre le livre choisi par le user
+form.addEventListener("submit", (event) => {
     event.preventDefault(), 
     updateBook()
     displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
@@ -33,52 +36,38 @@ function updateBook() {
     isBookAvailable = setBookState(selectedBook) //on modifie l'état du livre
 }
 
-//quand on ajoute au panier
+//ajouter au panier
 addButton.addEventListener("click", (event) => {
-        event.preventDefault();
-        addToCart(selectedBook, cart)
-        displayCart(selectedBook, cart)/* change le style none de l'espace cart en block et ajoute une ligne par livre choisi */
-        console.log()
-    }
-)
+    event.preventDefault();
+    addToCart(selectedBook, cart)
+    displayCart(selectedBook, cart)/* change le style none de l'espace cart en block et ajoute une ligne par livre choisi */
+});
+
+//Valider le panier
+checkoutButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    displayAllTotals(cart, displayTotalEl);
+});
+
+
+
+
 
 
 
 
 
 // let cartText = document.getElementById("cartText");
-// let displayTotalElement = document.getElementById("displayTotalElement");
+// let displayTotalEl = document.getElementById("displayTotalEl");
 // let reducedTotal = 0;
 // let total = 0
 
 
 
-// document.getElementById("validate").addEventListener("click", displayAllTotals);
-
-
-// function getTotal(){
-//     let total = 0
-//     cart.forEach( (item) => 
-//         total += item.price
-//     )
-//     return total
-// }
-
-
-// function displayAllTotals() {
-//     if (displayTotalElement.style.display === "none") {
-//         displayTotalElement.style.display = "block";
-//     }
-//     displayTotal()
-//     displayReducedTotal()
-// }
 
 
 
-// function displayTotal() {
-//     total = getTotal();
-//     displayTotalElement.innerHTML = `Total : ${total}€`
-// }
+
 
 
 

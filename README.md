@@ -1,5 +1,7 @@
 Notes pour clean code:
 
+Mon architecture est une approche modulaire inspirée du MVC. Un MVC strict m'a semblé trop rigide pour mon projet et mon projet trop petit pour implémenter un vrai MVC (pas la peine). 
+
 
 - faut-il définir un schéma constant pour situer les eventListeners dans l'architecture? le bouton Ajouter au panier est dans le corps du script (difficile de transmettre les infos du bouton sinon), le bouton Rechercher (soumission formulaire) aussi. Vérifier s'ils ont le même schéma de transmission, pour s'assurer de la cohérence.
 

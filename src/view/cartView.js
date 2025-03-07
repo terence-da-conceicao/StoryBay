@@ -1,3 +1,9 @@
+import { removeItem, getTotal } from "../controller/cartController.js"
+
+
+
+
+
 export function displayCart(book, cart) {
     const cartCard = document.getElementById("cartCard");
     const index = cart.indexOf(book);
@@ -12,7 +18,7 @@ export function displayCart(book, cart) {
 export function displayItemCard(book, cart, index) {
     const li = document.createElement("li");
     displayItemInfos(li, book);
-    displayItemRemoveButton(li, index, cart, book)
+    displayRemoveButton(li, index, cart, book)
     items.appendChild(li);
 }
 
@@ -22,47 +28,39 @@ function displayItemInfos(line, book) {
 }
 
 
-function displayItemRemoveButton(line, index, cart){
+// Ici, on a un appel à removeItem() qui devrait être dans le controller, mais vu que 
+//l'archi n'est pas un MVC ou un médiateur strict, tant pis
+function displayRemoveButton(line, index, cart){
     const remove = document.createElement("button");
     remove.id = "remove"
     remove.innerText = 'Retirer';
-    console.log("cart displayRemoveButton:", cart)
-
-    // const li = event.target.closest("li");
     remove.addEventListener("click", (event) => {
         event.preventDefault();
-        console.log("cart eventListenerbutton", cart)
-        gererDisparitionItem(line, index, cart);
+        removeItem(line, index, cart);
+        undisplayItem(line);
     });
     line.appendChild(remove);
 }
 
 
-function gererDisparitionItem(line, index, cart) {
-    console.log("cart gérerDisparitionItem:", cart)
-    removeItem(line, index, cart);
-    undisplayItem(line);
-}
-
-
-
-function removeItem(line, index, cart) {
-    console.log(index)
-    if (cart.length === 0) {
-        console.log("cart est vide")
-    } else if (index < -1 || index > cart.length-1) {
-        console.log("problème d'index")
-    } else {
-        console.log("cart removeItem:", cart)
-        console.log("index : ",index)
-        console.log("cart[index]",cart[0])
-        cart.splice(index, 1);
-        line.remove();
-    }
-}
-
-
 function undisplayItem(line) {
     line.remove();
-    // const index = cart.indexOf(book);
+}
+
+
+
+
+export function displayAllTotals(cart, element) {
+    if (element.style.display === "none") {
+        element.style.display = "block";
+    }
+    displayTotal(cart, element)
+    // displayReducedTotal()
+}
+
+
+
+function displayTotal(cart, element) {
+    let total = getTotal(cart);
+    element.innerHTML = `Total : ${total}€`
 }
