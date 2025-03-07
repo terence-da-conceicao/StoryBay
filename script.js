@@ -25,7 +25,6 @@ document.querySelector("form").addEventListener("submit", (event) => {
     event.preventDefault(), 
     updateBook()
     displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
-
 });
 
 //update les infos du book choisi, update son état

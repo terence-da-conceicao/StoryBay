@@ -1,10 +1,10 @@
 //affiche le panier sans réduction (change le display)
 export function displayCart(book) {
     console.log("définition displayCart dans cartView")
-    const viewCart = document.getElementById("viewCart");
+    const cartCard = document.getElementById("cartCard");
 
-    if (viewCart.style.display === "none") {
-        viewCart.style.display = "block";
+    if (cartCard.style.display === "none") {
+        cartCard.style.display = "block";
     }
     displayItem(book)
 }
@@ -27,14 +27,14 @@ export function displayItem(book) {
 
 
 // //créer un bouton pour effacer une ligne et retirer l'article du panier
-// function deleteItem(event, bookToRemove) {
-//     const li = event.target.closest("li");
-//     const index = cart.indexOf(bookToRemove);
+function deleteItem(event, bookToRemove) {
+    const li = event.target.closest("li");
+    const index = cart.indexOf(bookToRemove);
 
-//     if (index < -1 || index > cart.length-1) {
-//         console.log("problème d'index")
-//     } else {
-//         cart.splice(index, 1);
-//         li.remove();
-//     }
-// }
+    if (index < -1 || index > cart.length-1) {
+        console.log("problème d'index")
+    } else {
+        cart.splice(index, 1);
+        li.remove();
+    }
+}
