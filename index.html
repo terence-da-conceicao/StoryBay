@@ -10,27 +10,27 @@
 <body>
     <form>
         <label for="inputValue">Recherchez un livre : </label>
-        <input type="search" id="inputValue" list="books" required>
+        <input type="search" id="inputValue" list="booksList" required>
         <button type="submit" id="buttonId">Rechercher</button>
     </form>
 
-    <datalist id="books">
+    <datalist id="booksList">
     </datalist>
 
-    <p id="bookChoice"></p> <!--nom du livre selectionné-->
+    <p id="selectedBookTitle"></p> <!--nom du livre selectionné-->
     <div id="buyBook">
-        <button type="button" id="cartControls">Ajouter au panier</button>
+        <button type="button" id="addToCart">Ajouter au panier</button>
     </div>
     <br>
 
-    <div id="viewCart" style="display:none">
+    <div id="cartCard" style="display:none">
         <div id="cartText">Votre panier :</div>
         <ul id="items">
         </ul>
-        <button type="button" id="validate">Valider le panier</button>
+        <button type="button" id="checkoutButton">Valider le panier</button>
     </div>
 
-    <h3 id="displayTotalElement" style="display:none"></h3>
+    <h3 id="displayTotalEl" style="display:none"></h3>
     <h3 id="calcul"></h3>
     <ul id="reductionsDetails"></ul>
     <h3 id="displayReducedTotalElement"></h3>

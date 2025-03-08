@@ -3,7 +3,7 @@ body {
     background-color: black;
 }
 
-#cartControls {
+#addCart {
     background-color: rgb(189, 166, 166);
 }
 
@@ -15,7 +15,7 @@ body {
     background-color: rgb(189, 166, 166);
 }
 
-#buyBook {
+#addToCart {
     display:none;
 }
 
@@ -27,7 +27,7 @@ body {
     padding: 0;
 }
 
-#viewCart {
+#cartCard {
     display: none;
 }
 
