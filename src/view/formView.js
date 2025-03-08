@@ -5,7 +5,7 @@ export function createDatalist(list) {
         console.log(`${list} n'existe pas`)
         return
     } else {
-        const datalist = document.getElementById("books");
+        const datalist = document.getElementById("booksList");
         for (const book in list) {
             const option = document.createElement("option");
             option.value = list[book].title;
@@ -13,3 +13,5 @@ export function createDatalist(list) {
         };
     }
 }
+
+export const form = document.querySelector("form");

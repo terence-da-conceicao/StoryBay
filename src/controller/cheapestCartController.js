@@ -1,42 +1,21 @@
+import { applyReduce1, applyReduce2, applyReduce3 } from "./offersController.js"
 
 
-function getCheapestCart(cart, offers) {
+
+export function getCheapestCart(cart, offers) {
     const newCart = applyReduce1(cart, offers); //panier avec prix baissés de 5%
-    return newCart
+    console.log("réduction 1 :", newCart);
+
+    let reducedTotal = 0;
+    newCart.forEach((book) => reducedTotal += book.price);//obtenir reducedTotal après réduction 1
+    reducedTotal = applyReduce2(reducedTotal, offers);// après la 2eme
+    console.log("réduction 2 :", reducedTotal);
+
+    if (reducedTotal >= 100) {
+        reducedTotal = applyReduce3(reducedTotal, offers); // après la 3eme
+        console.log("réduction 3 :", reducedTotal);
+    } else {
+        console.log("pas de réduction 3");
+    }
+    return { newCart, reducedTotal }
 }
-
-export  function getReducedTotal(cart, offers) {
-    let reducedTotal = 0
-    let newCart = getCheapestCart(cart, offers)
-    newCart.forEach((book) => reducedTotal += book.price)
-    console.log("reducedotal:", reducedTotal)
-    return { reducedTotal, newCart }
-}
-
-function applyReduce1(cart, offers) {
-    const percentage = offers.offers[0].value / 100; //on récupère la valeur correspondant à 0,05
-    const newCart = cart.map((book) => ({
-        ...book, 
-        price: parseInt((book.price * (1-percentage)).toFixed(2))
-    }));
-    return newCart
-}
-
-    // const reducedTotal2 = applyReduce2(reducedTotal);
-    // console.log(reducedTotal%100)
-
-
-
-
-
-    // if ((reducedTotal%100) == 0) {
-    //     const reducedTotal3 = applyReduce3(reducedTotal2)
-    //     console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
-    //     console.log("cart avec réduction1: ",newCart);
-    //     return reducedTotal3 
-    // } else {
-    //     console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
-    //     console.log("cart avec réduction1: ",newCart);
-    //     return { newCart, reducedTotal: reducedTotal2 }
-    // }
-

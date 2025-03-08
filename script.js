@@ -1,20 +1,16 @@
-import { getData, getSelectedBook } from "./src/controller/formController.js"
+import { getSelectedBook } from "./src/controller/formController.js"
 import { createDatalist } from "./src/view/formView.js"
-import { setBookState, addToCart } from "./src/controller/bookCardController.js"
-import { displayBookCard } from "./src/view/bookCardView.js"
+import { addToCart, setBookState } from "./src/controller/bookController.js"
+import { displayBookCard } from "./src/view/bookView.js"
 import { displayCart, displayFinalTotal } from "./src/view/cartView.js"
+import { getData } from "./src/controller/dataController.js"
 
+const booksList = await getData('src/model/booksList.json')  //récupération des models booksList et offers.//idéalement il faudrait les passer avec des arguemnts, non?
+const offers = await getData("src/model/offers.json");
 
-
-
-
-const booksList = await getData('src/model/books.json')  //récupération des models books et offers.//idéalement il faudrait les passer avec des arguemnts, non?
-const offers = await getData('src/model/offers.json')
-
-
+let cart = [];
 let isBookAvailable = false;
 let selectedBook;
-let cart = [];
 
 const form = document.querySelector("form");
 let addButton = document.getElementById("addToCart");
@@ -22,22 +18,22 @@ let checkoutButton = document.getElementById("checkoutButton");
 let displayTotalEl = document.getElementById("displayTotalEl");
 
 // console.log("offers : ", offers)
-// console.log("booksList : ", booksList)
+console.log("booksList : ", booksList)
 
-createDatalist(booksList) //affichage du model books sous la forme d'une datalist
+createDatalist(booksList) //affichage du model booksList sous la forme d'une datalist
 
 //soumettre le livre choisi par le user
+// form.addEventListener("submit", (event) => {
+//     event.preventDefault(), 
+//     updateBook(selectedBook, booksList, isBookAvailable)
+//     displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
+// });
+
 form.addEventListener("submit", (event) => {
     event.preventDefault(), 
     updateBook()
     displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
-});
-
-//update les infos du book choisi, update son état
-function updateBook() {
-    selectedBook = getSelectedBook(selectedBook, booksList)
-    isBookAvailable = setBookState(selectedBook) //on modifie l'état du livre
-}
+})
 
 //ajouter au panier
 addButton.addEventListener("click", (event) => {
@@ -53,96 +49,9 @@ checkoutButton.addEventListener("click", (event) => {
 });
 
 
+//update les infos du book choisi, update son état
+function updateBook() {
+    selectedBook = getSelectedBook(selectedBook, booksList)
+    isBookAvailable = setBookState(selectedBook) //on modifie l'état du livre
+}
 
-
-
-
-
-
-
-// let cartText = document.getElementById("cartText");
-// let displayTotalEl = document.getElementById("displayTotalEl");
-// let reducedTotal = 0;
-// let total = 0
-
-
-
-
-
-
-
-
-
-// // function getReducedTotal()
-
-
-// function getCheapestCart() {
-//     let { newCart, reducedTotal } = applyReduce1();
-//     const reducedTotal2 = applyReduce2(reducedTotal);
-//     console.log(reducedTotal%100)
-
-
-//     if ((reducedTotal%100) == 0) {
-//         const reducedTotal3 = applyReduce3(reducedTotal2)
-//         console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
-//         console.log("cart avec réduction1: ",newCart);
-//         return reducedTotal3 
-//     } else {
-//         console.log("total avec réduction dans getCheapestCart():",reducedTotal2)
-//         console.log("cart avec réduction1: ",newCart);
-//         return { newCart, reducedTotal: reducedTotal2 }
-//     }
-// }
-
-
-// function applyReduce1() {
-//     console.log("verif si reducedTotal ets bien globale :", reducedTotal)
-//     const percentage = offers.offers[0].value / 100; //on récupère la valeur correspondant à 0,05
-//     const newCart = cart.map((book) => ({
-//         ...book, 
-//         price: parseInt((book.price * (1-percentage)).toFixed(2))
-//     }));
-    
-//     newCart.forEach( (book) => reducedTotal += book.price)
-//     console.log("total avec réduction dans applyReduce1():",reducedTotal)
-//     return { newCart, reducedTotal }
-// }
-
-
-
-// function applyReduce2(total) {
-//     const minus = offers.offers[1].value / 100; 
-//     const newTotal = total * (1 - minus)
-//     return newTotal
-// }
-
-
-// function applyReduce3(total) {
-//     const slice = offers.offers[2]
-//     const saved = ((total-(total%slice.sliceValue))/slice.sliceValue)* slice.value;
-//     let newTotal = total-saved
-//     return newTotal
-// }
-
-
-
-
-
-
-
-// // function displayReductionsDetails() {
-//     //     let displayReducedTotal = document.getElementById("displayReducedTotal");
-//     //     displayReducedTotal = `Voici le détail de vos réductions. 
-//     //     <\n> 5 % de réduction sur chaque livre. 
-//     //     <\n> 15% de réduction sur le panier total.
-//     //     <\n> Tous les 100€, 12€ sont déduits..`
-//     // }
-
-
-
-// // FAIRE EXEMPLE 2 livres 30 et 35€ = panier de 50€ avec réductions
-
-// /* offers : 
-// - 5 % de réduction sur chaque livre
-// - 15% de réduction sur le panier total
-// - Tous les 100€, 12€ sont déduits. */

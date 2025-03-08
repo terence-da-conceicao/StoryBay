@@ -17,3 +17,6 @@ export function getTotal(cart){
     )
     return total
 }
+
+
+

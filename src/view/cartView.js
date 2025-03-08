@@ -18,6 +18,7 @@ export function displayFinalTotal(cart, element, offers) {
 
 
 
+
 export function displayElement(el) {
     if (el.style.display === "none") {
         el.style.display = "block";
