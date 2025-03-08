@@ -10,12 +10,14 @@ Mon architecture est une approche modulaire inspirée du MVC. Un MVC strict m'a 
 
 - Est-ce que cette architecture est un vrai MVC? Trouver des exemples similaires sur github.
 
-
 _____________________________________________________________________________________
 
 
 
 TodoList (backlog?):
+
+
+- changer les id du html du français à l'anglais
 
 - Se renseigner pour savoir s'il vaut mieux générer les elements HTML pour les display en none
 
