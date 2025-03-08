@@ -1,5 +1,5 @@
 import { getCheapestCart } from "../controller/cheapestCartController.js"
-// import { cart } from "../script.js"
+import { getTotal } from "../controller/cartController.js"
 
 
 export function displayCheapestCart(cart, offers) {
@@ -9,13 +9,13 @@ export function displayCheapestCart(cart, offers) {
     setTimeout(() => {
         let annonce = document.getElementById("annonceReduce1");
         annonce.innerHTML = "5% de réduction sur chaque livre!";
-    }, 1500);
+    }, 1000);
     setTimeout(() => {
         displayReducedItems(newCart);
-    },2000);
+    },1500);
     setTimeout(() => {
-        displayReducedTotal(reducedTotal);
-    }, 3000);
+        displayReducedTotal(reducedTotal, cart);
+    }, 2000);
 }
 
 
@@ -35,17 +35,22 @@ function displayReducedItems(cart) {
     }
 }
 
-function displayReducedTotal(total) {
-    // console.log("vous économisez ",saved, " sur un total de ", total, "et payez donc", newTotal, "€." )
+function displayReducedTotal(total, cart) {
     let details = document.getElementById("reductionsDetails")
-    let finalTotalText = document.getElementById("displayReducedTotalElement")
+    let finalTotalText = document.getElementById("displayReducedTotalElement");
+    let saved = document.getElementById("saved");
     let extraReduce = "";
     if (total >= 100) {
         extraReduce = " et 12€ de réduction par tranche de 100€"
     }
-    
+
    details.innerHTML = `ainsi que 15% sur l'ensemble du panier${extraReduce} !`
    finalTotalText.innerHTML = `Total avec les réductions: ${total.toFixed(2)}€`
+       
+   let expensiveTotal = getTotal(cart)
+   console.log("saved = ",(expensiveTotal-total).toFixed(2))
+    saved.innerHTML = `Vous avez économisé ${(expensiveTotal-total).toFixed(2)}€`
+
 }
 
 
