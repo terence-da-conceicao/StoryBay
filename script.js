@@ -43,6 +43,8 @@ checkoutButton.addEventListener("click", (event) => {
 
 clear.addEventListener("click", (event) => {
     event.preventDefault();
+    document.getElementById("selectedBookTitle").innerHTML = "";
+    document.getElementById("buyBook").style.display = "none";
     toClear(cart);
     undisplayCart();
 });
