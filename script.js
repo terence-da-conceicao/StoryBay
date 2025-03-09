@@ -47,6 +47,7 @@ clear.addEventListener("click", (event) => {
     document.getElementById("buyBook").style.display = "none";
     toClear(cart);
     undisplayCart();
+    selectedBook = "";
 });
 
 
