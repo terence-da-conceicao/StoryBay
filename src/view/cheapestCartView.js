@@ -48,12 +48,19 @@ function displayDiscountTotal(total, cart) {
    finalTotalText.innerHTML = `Total avec les réductions: ${total.toFixed(2)}€`
        
    let expensiveTotal = getTotal(cart)
-   console.log("saved = ",(expensiveTotal-total).toFixed(2))
     saved.innerHTML = `Vous avez économisé ${(expensiveTotal-total).toFixed(2)}€`
 
 }
 
-
+export function undisplayCheapestCart() {
+    const cheapestCart = document.getElementById("finalCart");
+    if (cheapestCart) {
+      const children = cheapestCart.children;
+      for (let i = 0; i < children.length; i++) {
+        children[i].innerHTML = "";
+      }
+    }
+  }
 
 
 

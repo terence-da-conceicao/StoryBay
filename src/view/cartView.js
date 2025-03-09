@@ -1,5 +1,5 @@
 import { removeItem, getTotal } from "../controller/cartController.js"
-import { displayCheapestCart } from "../view/cheapestCartView.js"
+import { displayCheapestCart, undisplayCheapestCart } from "../view/cheapestCartView.js"
 
 export function displayCart(book, cart) {
     const cartCard = document.getElementById("cartCard");
@@ -10,7 +10,6 @@ export function displayCart(book, cart) {
 
 
 export function displayFinalTotal(cart, element, offers) {
-    console.log(offers)
     displayElement(element); // l'espace où s'affiche le total
     displayTotal(cart, element);
     displayCheapestCart(cart, offers);
@@ -23,6 +22,14 @@ export function displayElement(el) {
     if (el.style.display === "none") {
         el.style.display = "block";
     }
+}
+
+export function undisplayCart() {
+    const items = document.getElementById("items")
+    const cartCard = document.getElementById("cartCard")
+    items.innerHTML = "";
+    cartCard.style.display = "none";
+    undisplayCheapestCart();
 }
 
 

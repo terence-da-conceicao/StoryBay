@@ -20,3 +20,8 @@ export function getTotal(cart){
 
 
 
+export function toClear(cart) {
+    cart = [];
+    console.log("cart vidé:", cart);
+}
+
