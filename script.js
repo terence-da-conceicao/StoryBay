@@ -4,21 +4,24 @@ import { addToCart, setBookState } from "./src/controller/bookController.js"
 import { displayBookCard } from "./src/view/bookView.js"
 import { displayCart, displayFinalTotal } from "./src/view/cartView.js"
 import { getData } from "./src/controller/dataController.js"
+import { useRoute } from "./src/router.js"
+
 
 const booksList = await getData('src/model/booksList.json')  //récupération des models booksList et offers.//idéalement il faudrait les passer avec des arguemnts, non?
 const offers = await getData("src/model/offers.json");
 
+console.log("location: ",window.location.href)
 let cart = [];
 let isBookAvailable = false;
 let selectedBook;
 
 const form = document.querySelector("form");
-let addButton = document.getElementById("addToCart");
+export let addButton = document.getElementById("addToCart");
 let checkoutButton = document.getElementById("checkoutButton");
 let displayTotalEl = document.getElementById("displayTotalEl");
 
 // console.log("offers : ", offers)
-console.log("booksList : ", booksList)
+// console.log("booksList : ", booksList)
 
 createDatalist(booksList) //affichage du model booksList sous la forme d'une datalist
 
