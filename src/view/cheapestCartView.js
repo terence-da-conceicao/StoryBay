@@ -3,18 +3,18 @@ import { getTotal } from "../controller/cartController.js"
 
 
 export function displayCheapestCart(cart, offers) {
-    const { newCart, reducedTotal } = getCheapestCart(cart, offers)
+    const { newCart, discountTotal } = getCheapestCart(cart, offers)
 
     displayTitle();
     setTimeout(() => {
-        let annonce = document.getElementById("annonceReduce1");
+        let annonce = document.getElementById("annoncediscount1");
         annonce.innerHTML = "5% de réduction sur chaque livre!";
     }, 1000);
     setTimeout(() => {
-        displayReducedItems(newCart);
+        displayDiscountItems(newCart);
     },1500);
     setTimeout(() => {
-        displayReducedTotal(reducedTotal, cart);
+        displayDiscountTotal(discountTotal, cart);
     }, 2000);
 }
 
@@ -26,8 +26,8 @@ function displayTitle() {
 }
 
 
-function displayReducedItems(cart) {
-    const ul = document.getElementById("reducedBooks")
+function displayDiscountItems(cart) {
+    const ul = document.getElementById("discountBooks")
     for (let i = 0; i < cart.length; i++) {
         const li = document.createElement("li");
         li.innerHTML = `${cart[i].title}, ${cart[i].price}€`;
@@ -35,16 +35,16 @@ function displayReducedItems(cart) {
     }
 }
 
-function displayReducedTotal(total, cart) {
-    let details = document.getElementById("reductionsDetails")
-    let finalTotalText = document.getElementById("displayReducedTotalElement");
+function displayDiscountTotal(total, cart) {
+    let details = document.getElementById("discountDetails")
+    let finalTotalText = document.getElementById("displayDiscountTotalElement");
     let saved = document.getElementById("saved");
-    let extraReduce = "";
+    let extradiscount = "";
     if (total >= 100) {
-        extraReduce = " et 12€ de réduction par tranche de 100€"
+        extradiscount = " et 12€ de réduction par tranche de 100€"
     }
 
-   details.innerHTML = `ainsi que 15% sur l'ensemble du panier${extraReduce} !`
+   details.innerHTML = `ainsi que 15% sur l'ensemble du panier${extradiscount} !`
    finalTotalText.innerHTML = `Total avec les réductions: ${total.toFixed(2)}€`
        
    let expensiveTotal = getTotal(cart)

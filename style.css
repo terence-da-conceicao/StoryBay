@@ -34,3 +34,7 @@ body {
 #displayTotal {
     display: none;
 }
+
+#checkoutButton {
+    background-color: aquamarine;
+}
