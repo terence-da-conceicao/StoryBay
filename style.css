@@ -1,6 +1,19 @@
 body {
-    color: rgb(136, 130, 130);
-    background-color: black;
+    color: #080808;
+    background-color: rgb(251, 251, 251);
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    height : 100vh;
+}
+
+#selection {
+    background-color: green;
+    width: 70%;
+}
+
+#cart {
+    background-color: blue;
+    width: 30%;
 }
 
 #addCart {

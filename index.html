@@ -6,34 +6,38 @@
     <script defer src="script.js" type="module"></script>
     <link rel="stylesheet" href="style.css">
     <title>Henri Pottier Store</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
-    <form>
-        <label for="inputValue">Recherchez un livre : </label>
-        <input type="search" id="inputValue" list="booksList" required>
-        <button type="submit" id="buttonId">Rechercher</button>
-    </form>
+    <div id="selection">
+        <form>
+            <label for="inputValue">Recherchez un livre : </label>
+            <input type="search" id="inputValue" list="booksList" required>
+            <button type="submit" id="buttonId">Rechercher</button>
+        </form>
 
-    <datalist id="booksList">
-    </datalist>
+        <datalist id="booksList">
+        </datalist>
 
-    <p id="selectedBookTitle"></p> <!--nom du livre selectionné-->
-    <div id="buyBook">
-        <button type="button" id="addToCart">Ajouter au panier</button>
-    </div>
-    <br>
-
-    <div id="cartCard" style="display:none">
-        <div id="cartText">Votre panier :</div>
-        <ul id="items">
-        </ul>
-        <div>
-            <button type="button" id="clearCart">Vider le panier</button>
+        <p id="selectedBookTitle"></p> <!--nom du livre selectionné-->
+        <div id="buyBook">
+            <button type="button" id="addToCart">Ajouter au panier</button>
         </div>
-        <div>
-            <button type="button" id="checkoutButton">Valider le panier</button>
-        </div>
+        <br>
     </div>
+    <div id="cart">
+        <div id="cartCard" style="display:none">
+            <div id="cartText">Votre panier :</div>
+            <ul id="items">
+            </ul>
+            <div>
+                <button type="button" id="clearCart">Vider le panier</button>
+            </div>
+            <div>
+                <button type="button" id="checkoutButton">Valider le panier</button>
+            </div>
+        </div>
+    
 
     <div id="finalCart">
         <h3 id="displayTotalEl" style="display:none"></h3>
@@ -44,6 +48,6 @@
         <h3 id="displayDiscountTotalElement"></h3>
         <h4 id="saved"></h4>
     </div>
-
+</div>
 </body>
 </html>
