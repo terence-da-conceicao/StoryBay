@@ -6,6 +6,11 @@ import { displayCart, displayFinalTotal, undisplayCart } from "./src/view/cartVi
 import { getData } from "./src/controller/dataController.js"
 import { toClear } from "./src/controller/cartController.js"
 
+
+
+
+
+
 const booksList = await getData('src/model/booksList.json')  //récupération des models booksList et offers.//idéalement il faudrait les passer avec des arguemnts, non?
 const offers = await getData("src/model/offers.json");
 
