@@ -19,37 +19,36 @@
         <div class="absolute bottom-0 flex p-4 text-yellow-500 text-[20px]">Votre librarie en ligne</div>
     </header>
 
+    <!--espace selection + panier-->
+    <div id="shopInterface"
+        class="flex flex-row">
+        
 
-    <div id="shopInterface">
-        <div id="selection" class="p-6">
-            <!-- <form>
-                <input class="placeholder-black bg-green-500 text-black border-black w-[80%] h-[65px] p-4 text-[30px]" type="search" id="inputValue" list="booksList" placeholder="Recherchez un livre" required>
-                 <button type="submit" id="buttonId">Rechercher</button> -->
-            <!-- </form> -->
+        <!--espace selection : champ de recherche et bookCard-->
+        <div id="selection"
+            class="flex flex-col w-[70%]">
 
+
+            <!--formulaire-->
             <div class="pb-4 w-full max-w-sm min-w-[200px]">
                 <div class="relative">
                     <form>
-                  <input
-                    class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-                    type="search" id="inputValue" list="booksList" placeholder="Recherchez un livre" required>
-                  <button
-                    class="absolute top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                    type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-2">
-                      <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
-                    </svg>
-                  </button> 
-                </form>
+                        <input
+                            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                            type="search" id="inputValue" list="booksList" placeholder="Recherchez un livre" required>
+                        <button
+                            class="absolute top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-2">
+                                <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+                            </svg>
+                        </button> 
+                    </form>
                 </div>
-              </div>
+            </div>
 
 
-
-
-
-            <datalist id="booksList">
-            </datalist>
+            <datalist id="booksList"></datalist>
 
             <!--carte du livre quand il est selectionné-->
             <div id="buyBook" class="flex flex-col items-center justify-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -58,28 +57,23 @@
                     <div class="flex justify-center">
                         <img id="bookCover" class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="" alt="">
                     </div>
-                    <div class="p-4 flex justify-center">
+                    <div class="p-4 flex justify-center items-center">
                         <h6 id="price"></h6>
                         <button type="button" id="addToCart" class="text-white bg-green-900 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-900 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                             Ajouter au panier
                         </button>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div> <!--buyBook-->
 
-                <!-- <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"> -->
-                    <!-- <img id="bookCover" class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="./src/assets/hpecolesorciers.jpg" alt="bookcover"> -->
-                    <!-- <div class="flex flex-col justify-between p-4 leading-normal">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5> -->
-                        <!-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p> -->
-                    <!-- </div>
-                </a> -->
-                
-                
-            <!-- </div> -->
+
             <br>
-        </div>
-        <div id="cart">
+        </div><!--selection-->
+
+
+        <!--panier-->
+        <div id="cart"
+            class="flex flex-col bg-blue-500 text-white w-[30%]">
             <div id="cartCard" style="display:none">
                 <div id="cartText">Votre panier :</div>
                 <ul id="items">
@@ -102,7 +96,6 @@
             <h3 id="displayDiscountTotalElement"></h3>
             <h4 id="saved"></h4>
         </div>
-    </div>
-</div>
+    </div> <!--shopInterface-->
 </body>
 </html>
