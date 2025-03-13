@@ -2,6 +2,7 @@
  //pour des raisons d'accessibilité à ce bouton. J ene sais
 
 export function getSelectedBook(book, list) {
+
     const inputValue = document.getElementById("inputValue").value.toLowerCase();
 
     for (let i = 0; i < list.length; i++) {

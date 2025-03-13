@@ -24,7 +24,7 @@
         class="flex flex-row">
         
 
-        <!--espace selection : champ de recherche et bookCard-->
+        <!--espace selection : formulaire et bookCard-->
         <div id="selection"
             class="flex flex-col w-[70%]">
 
@@ -34,12 +34,12 @@
                 <div class="relative">
                     <form>
                         <input
-                            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
+                            class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
                             type="search" id="inputValue" list="booksList" placeholder="Recherchez un livre" required>
                         <button
-                            class="absolute top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            class="flex absolute top-1 right-1 justify-center items-center mt-0.5 rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                             type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                                 <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
                             </svg>
                         </button> 
@@ -54,7 +54,7 @@
             <div id="buyBook" class="p-4 flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                 <h5 id="selectedBookTitle" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
                 <div class="flex justify-center">
-                    <img id="bookCover" class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="" alt="">
+                    <img id="bookCover" class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg hidden" src="" alt="">
                 </div>
                 <div id="price" class="p-2 text-red-400 text-3xl"></div>
                 <button type="button" id="addToCart" class="text-white bg-green-900 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-900 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
