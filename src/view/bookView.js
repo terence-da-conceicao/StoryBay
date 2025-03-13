@@ -3,7 +3,7 @@ export function displayBookCard(state, book, button){
         document.getElementById("selectedBookTitle").innerHTML = "Ce livre n'est pas disponible.";
     } else {
         document.getElementById("selectedBookTitle").innerHTML = `<h3>${book.title}</h3>`;
-        document.getElementById("price").innerHTML = `<h3>${book.price}</h3>`;
+        document.getElementById("price").innerHTML = `${book.price}€`;
         const coverImage = document.getElementById("bookCover");
         coverImage.src = book.cover
         console.log(document.getElementById("bookCover").src)
