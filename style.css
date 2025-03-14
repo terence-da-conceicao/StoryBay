@@ -14,20 +14,13 @@ header {
     position: relative;
 }
 
+#cart {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-
-
-
-
-
-
-/* #cart {
-    background-color: blue;
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-
-} */
+#cartText {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
 #addCart {
     background-color: rgb(189, 166, 166);

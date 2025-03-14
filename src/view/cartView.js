@@ -37,6 +37,7 @@ export function undisplayCart() {
 
 function displayItemCard(book, cart, index) {
     const li = document.createElement("li");
+    li.classList.add("py-2")
     displayItemInfos(li, book);
     displayRemoveButton(li, index, cart, book)
     items.appendChild(li);
@@ -52,6 +53,7 @@ function displayItemInfos(line, book) {
 //l'archi n'est pas un MVC ou un médiateur strict, tant pis
 function displayRemoveButton(line, index, cart){
     const remove = document.createElement("button");
+    remove.classList.add("border-black")
     remove.id = "remove"
     remove.innerText = 'Retirer';
     remove.addEventListener("click", (event) => {
