@@ -1,5 +1,5 @@
 export function displayBookCard(state, book, button){
-    const bookCard = document.getElementById("buyBook");
+    const bookCard = document.getElementById("bookCard");
     const title = document.getElementById("selectedBookTitle");
     const coverImage = document.getElementById("bookCover");
     const price = document.getElementById("price");
@@ -13,7 +13,7 @@ export function displayBookCard(state, book, button){
             newErrorCard.classList.add("p-4")
             document.getElementById("selection").appendChild(newErrorCard)
         }
-        document.getElementById("buyBook").style.display = "none";
+        document.getElementById("bookCard").style.display = "none";
 
     } else {
             bookCard.style.display = "block";
