@@ -15,7 +15,6 @@ const offers = await getData("src/model/offers.json");
 let cart = [];
 let isBookAvailable = false;
 let selectedBook;
-
 export let addButton = document.getElementById("addToCart");
 const form = document.querySelector("form");
 let checkoutButton = document.getElementById("checkoutButton");
@@ -36,7 +35,7 @@ addButton.addEventListener("click", (event) => {
     event.preventDefault();
     addToCart(selectedBook, cart)
     displayCart(selectedBook, cart)/* change le style none de l'espace cart en block et ajoute une ligne par livre choisi */
-    updateTotalButton(checkoutButton);
+    updateTotalButton(cart, checkoutButton);
 });
 
 //Valider le panier
@@ -52,6 +51,8 @@ clear.addEventListener("click", (event) => {
     document.getElementById("bookCard").style.display = "none";
     toClear(cart);
     undisplayCart();
+    console.log(cart)
+    updateTotalButton(cart, checkoutButton);
     selectedBook = "";
 });
 

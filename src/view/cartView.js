@@ -1,6 +1,7 @@
 import { removeItem, getTotal } from "../controller/cartController.js"
 import { displayCheapestCart, undisplayCheapestCart } from "../view/cheapestCartView.js"
 
+
 export function displayCart(book, cart) {
     const cartCard = document.getElementById("cartCard");
     const index = cart.indexOf(book);
@@ -16,11 +17,20 @@ export function displayFinalTotal(cart, element, offers) {
     displayCheapestCart(cart, offers);
 }
 
-export function updateTotalButton(checkoutButton) {
-    checkoutButton.innerHTML = `Valider le Panier (${buttonTotal}€)`
-
-
+export function updateTotalButton(cart, checkoutButton) {
+    let total = getTotal(cart);
+    checkoutButton.innerHTML = "Valider le panier"; //réinitialisation
+    if (total > 0) {
+    checkoutButton.innerHTML = `Valider le panier (${total})€`;
+    }
 }
+
+
+function displayTotal(cart, element) {
+    let total = getTotal(cart);
+    element.innerHTML = `Total : ${total}€`;
+}
+
 
 /* <div id="finalCart">
             <h3 id="displayTotalEl" style="display:none"></h3>
@@ -60,9 +70,6 @@ function displayItemCard(book, cart, index) {
     items.appendChild(li);
 }
 
-
-let buttonTotal = 0;
-
 function displayItemInfos(line, book) {
     const container = document.createElement("div");
     container.id = "container";
@@ -77,8 +84,6 @@ function displayItemInfos(line, book) {
 
     const price = document.createElement("span");
     price.innerHTML = `Prix : ${book.price}€`;
-    buttonTotal += book.price
-    console.log(buttonTotal)
     price.classList.add("block", "text-gray-400");
 
     textContainer.appendChild(title);
@@ -121,8 +126,4 @@ function undisplayItem(line) {
 }
 
 
-function displayTotal(cart, element) {
-    let total = getTotal(cart);
-    element.innerHTML = `Total : ${total}€`
-}
 
