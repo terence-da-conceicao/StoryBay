@@ -7,47 +7,94 @@
     <link rel="stylesheet" href="style.css">
     <title>Henri Pottier Store</title>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <div id="selection">
-        <form>
-            <label for="inputValue">Recherchez un livre : </label>
-            <input type="search" id="inputValue" list="booksList" required>
-            <button type="submit" id="buttonId">Rechercher</button>
-        </form>
 
-        <datalist id="booksList">
-        </datalist>
-
-        <p id="selectedBookTitle"></p> <!--nom du livre selectionné-->
-        <div id="buyBook">
-            <button type="button" id="addToCart">Ajouter au panier</button>
+    <header id="header" class="relative w-full h-[150px] overflow-hidden">
+        <img src="./src/assets/header.jpeg" alt="Header" class="w-full h-full object-cover">
+        <div class="absolute top-0 left-0 w-full h-full flex flex-col justify-between px-4">
+            <h1 class="text-yellow-400 text-[clamp(3rem,5vh,4rem)]">BookCove</h1>
+            <h2 class="text-yellow-400 text-[clamp(1rem,1.5vh,1.5rem)] pb-2">Votre librairie en ligne</h2>
         </div>
-        <br>
-    </div>
-    <div id="cart">
-        <div id="cartCard" style="display:none">
-            <div id="cartText">Votre panier :</div>
-            <ul id="items">
-            </ul>
-            <div>
-                <button type="button" id="clearCart">Vider le panier</button>
-            </div>
-            <div>
-                <button type="button" id="checkoutButton">Valider le panier</button>
-            </div>
-        </div>
+    </header>
+    
+    
     
 
-    <div id="finalCart">
-        <h3 id="displayTotalEl" style="display:none"></h3>
-        <h3 id="calcul"></h3>
-        <h4 id="annoncediscount1"></h4>
-        <ul id="discountBooks"></ul>
-        <p id="discountDetails"></p>
-        <h3 id="displayDiscountTotalElement"></h3>
-        <h4 id="saved"></h4>
-    </div>
-</div>
+    <!--espace selection + panier-->
+    <main id="shopInterface" class="flex flex-row font-sans h-[100%]">
+        
+
+        <!--espace selection : formulaire et bookCard-->
+        <section id="selection" class="flex flex-col w-[70%]">
+
+            <!--formulaire-->
+            <div class="p-4 w-full max-w-sm min-w-[200px]">
+                <div class="relative">
+                    <form>
+                        <input type="search" id="inputValue" list="booksList" placeholder="Recherchez un livre" required class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow">
+                        <button  type="submit" class="flex absolute top-1 right-1 justify-center items-center mt-0.5 rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
+                            </svg>
+                        </button> 
+                    </form>
+                </div>
+            </div>
+
+            <datalist id="booksList"></datalist>
+
+            <!--bookCard-->
+            <article id="bookCard" class="flex flex-col p-4 mx-auto mb-5 items-center justify-center text-center bg-white border border-gray-200 rounded-lg shadow-sm  w-[90%] dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 hidden">
+                <h3 id="selectedBookTitle" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h3>
+                <div class="flex justify-center overflow-hidden">
+                    <img id="bookCover" src="" alt="" class="object-cover rounded-t-lg max-w-full min-w-[40%] h-[300px] md:h-[400px] md:rounded-s-lg">
+                </div>
+                <div id="price" class="p-2 text-red-400 text-3xl"></div>
+                <button type="button" id="addToCart" class="text-white bg-amber-400 hover:bg-amber-300 focus:outline-none font-medium rounded-full text-sm px-5 py-2.5 text-center mx-auto dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-800">Ajouter au panier</button>
+            </article> <!--bookCard-->
+
+        </section><!--selection-->
+
+
+
+        
+        <!--panier-->
+        <section id="cart" class="flex flex-col relative font-sans bg-white border border-gray-200 h-[100%] w-[30%] px-2 py-4 ">
+            <header class="text-center">
+                <h1 id="cartText" class="text-xl font-bold text-black-900 sm:text-1xl pb-4">Votre panier:</h1>
+            </header>
+            <div id="cartCard" style="display:none">
+                <div class="border border-gray-200 rounded-lg px-2 mt-2 flex flex-col h-[67vh] overflow-y-auto">
+                    <!--ITEMS-->
+                    <ul id="items" class="text-sm"></ul>
+                   <!--REDUCTIONS--> 
+                   <div id="finalCart" style="display:none" class="py-3 px-2">
+                        <h2 id="displayTotalEl" class="font-bold text-pink-500"></h2>
+                        <div class="p-4">
+                            <h3 id="calcul" class="text-xs"></h3>
+                            <h4 id="annoncediscount1" class="text-xs"></h4>
+                            <p id="discountDetails" class="text-xs"></p>
+                        </div>
+                        <h3 id="displayDiscountTotalElement" class="text-pink-400 text-2xl font-bold"></h3>
+                        <h4 id="saved" class="text-sky-300 my-4 text-sm"></h4>
+                    </div>
+                </div> 
+                <footer class="flex flex-col p-4 absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center items-center">
+                    <!-- VALIDER -->
+                    <div class="flex self-center gap-2 w-40">
+                        <button type="button" id="checkoutButton" class="w-full inline-block rounded-sm px-4 py-2 bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-sm font-medium text-white hover:border hover:border-stone-950 hover:bg-white  hover:bg-none hover:text-stone-950 focus:ring-3 focus:outline-hidden">Valider le panier</button>
+                    </div>
+                        <!-- VIDER -->
+                    <div class="flex self-center gap-2 w-40">
+                        <button type="button" id="clearCart" class="w-full inline-block rounded-sm mt-1 px-4 py-2 border border-red-600 text-sm font-medium text-red-600 hover:bg-transparent hover:text-stone-950 hover:border-stone-950 focus:ring-3 focus:outline-hidden">Vider le panier</button>
+                    </div>
+                </footer>
+            </div>
+        </section>
+
+
+    </main> <!--shopInterface-->
 </body>
 </html>

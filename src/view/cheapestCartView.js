@@ -26,14 +26,14 @@ function displayTitle() {
 }
 
 
-function displayDiscountItems(cart) {
-    const ul = document.getElementById("discountBooks")
-    for (let i = 0; i < cart.length; i++) {
-        const li = document.createElement("li");
-        li.innerHTML = `${cart[i].title}, ${cart[i].price}€`;
-        ul.appendChild(li);
-    }
-}
+// function displayDiscountItems(cart) {
+//     const ul = document.getElementById("discountBooks")
+//     for (let i = 0; i < cart.length; i++) {
+//         const li = document.createElement("li");
+//         li.innerHTML = `${cart[i].title}, ${cart[i].price}€`;
+//         ul.appendChild(li);
+//     }
+// }
 
 function displayDiscountTotal(total, cart) {
     let details = document.getElementById("discountDetails")
@@ -48,7 +48,7 @@ function displayDiscountTotal(total, cart) {
    finalTotalText.innerHTML = `Total avec les réductions: ${total.toFixed(2)}€`
        
    let expensiveTotal = getTotal(cart)
-    saved.innerHTML = `Vous avez économisé ${(expensiveTotal-total).toFixed(2)}€`
+    saved.innerHTML = `Vous avez économisé ${(expensiveTotal-total).toFixed(2)}€! 💸`
 
 }
 

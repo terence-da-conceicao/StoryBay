@@ -5,6 +5,9 @@ import { displayBookCard } from "./src/view/bookView.js"
 import { displayCart, displayFinalTotal, undisplayCart } from "./src/view/cartView.js"
 import { getData } from "./src/controller/dataController.js"
 import { toClear } from "./src/controller/cartController.js"
+import { updateTotalButton } from "./src/view/cartView.js"
+
+
 
 const booksList = await getData('src/model/booksList.json')  //récupération des models booksList et offers.//idéalement il faudrait les passer avec des arguemnts, non?
 const offers = await getData("src/model/offers.json");
@@ -12,7 +15,6 @@ const offers = await getData("src/model/offers.json");
 let cart = [];
 let isBookAvailable = false;
 let selectedBook;
-
 export let addButton = document.getElementById("addToCart");
 const form = document.querySelector("form");
 let checkoutButton = document.getElementById("checkoutButton");
@@ -33,21 +35,25 @@ addButton.addEventListener("click", (event) => {
     event.preventDefault();
     addToCart(selectedBook, cart)
     displayCart(selectedBook, cart)/* change le style none de l'espace cart en block et ajoute une ligne par livre choisi */
+    updateTotalButton(cart, checkoutButton);
 });
 
 //Valider le panier
 checkoutButton.addEventListener("click", (event) => {
     event.preventDefault();
+    document.getElementById("items").style.display = "none";
     displayFinalTotal(cart, displayTotalEl, offers);
 });
 
 clear.addEventListener("click", (event) => {
     event.preventDefault();
-    document.getElementById("selectedBookTitle").innerHTML = "";
-    document.getElementById("buyBook").style.display = "none";
+    // document.getElementById("selectedBookTitle").innerHTML = "";
+    // document.getElementById("bookCard").style.display = "none";
     toClear(cart);
     undisplayCart();
-    selectedBook = "";
+    console.log(cart)
+    updateTotalButton(cart, checkoutButton);
+    // selectedBook = "";
 });
 
 

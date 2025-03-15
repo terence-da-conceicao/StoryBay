@@ -3,17 +3,21 @@ body {
     background-color: rgb(251, 251, 251);
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
-    height : 100vh;
+    flex-direction: column;
+    height: 100vh;
+    scroll-behavior: smooth;
 }
 
-#selection {
-    background-color: green;
-    width: 70%;
+header {
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #cart {
-    background-color: blue;
-    width: 30%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#cartText {
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #addCart {
@@ -24,16 +28,13 @@ body {
     background-color: rgb(189, 166, 166);
 }
 
-#inputValue{
-    background-color: rgb(189, 166, 166);
-}
 
 #addToCart {
     display:none;
 }
 
 #remove {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     width: 40px;
     height: 20px;
     font-size: 70%;
@@ -48,6 +49,19 @@ body {
     display: none;
 }
 
-#checkoutButton {
-    background-color: aquamarine;
-}
+
+
+
+
+
+/* @media (min-width: 640px) { /* sm: */
+    /* #cart {
+      padding-left: 24px; /* sm:px-6 */
+      /* padding-right: 24px;
+    } */
+
+
+  /* @media (min-width: 1024px) { /* lg: */
+    /* #cart {
+      padding-left: 32px; /* lg:px-8 */
+      /* padding-right: 32px; */

@@ -21,7 +21,7 @@ export function getTotal(cart){
 
 
 export function toClear(cart) {
-    cart = [];
+    cart.length = 0;
     console.log("cart vidé:", cart);
 }
 
