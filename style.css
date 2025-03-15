@@ -36,7 +36,7 @@ header {
 }
 
 #remove {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     width: 40px;
     height: 20px;
     font-size: 70%;
@@ -51,24 +51,19 @@ header {
     display: none;
 }
 
-#checkoutButton {
-    background-color: aquamarine;
-}
 
 
 
 
 
-@media (min-width: 640px) { /* sm: */
-    #cart {
+/* @media (min-width: 640px) { /* sm: */
+    /* #cart {
       padding-left: 24px; /* sm:px-6 */
-      padding-right: 24px;
-    }
-  }
+      /* padding-right: 24px;
+    } */
 
-  @media (min-width: 1024px) { /* lg: */
-    #cart {
+
+  /* @media (min-width: 1024px) { /* lg: */
+    /* #cart {
       padding-left: 32px; /* lg:px-8 */
-      padding-right: 32px;
-    }
-  }
+      /* padding-right: 32px; */

@@ -56,8 +56,9 @@
             <!--carte du livre quand il est selectionné-->
             <div id="buyBook" class="p-4 flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 hidden">
                 <h5 id="selectedBookTitle" class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"></h5>
-                <div class="flex justify-center">
-                    <img id="bookCover" class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="" alt="">
+                <div class="flex justify-center overflow-hidden">
+                    <img id="bookCover" 
+                        class="object-cover rounded-t-lg h-96 md:w-48 md:rounded-s-lg" src="" alt="">
                 </div>
                 <div id="price" class="p-2 text-red-400 text-3xl"></div>
                 <button type="button" id="addToCart" class="text-white bg-green-900 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-900 font-medium rounded-full text-sm px-5 py-2.5 text-center self-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
@@ -72,23 +73,25 @@
         
         <!--panier-->
         <section id="cart"
-            class="flex flex-col font-sans bg-green-500 h-[100%] w-[30%] px-2 py-4 ">
+            class="flex flex-col relative font-sans bg-green-500 h-[100%] w-[30%] px-2 py-4 ">
                 <!-- <div id="cartText">Votre panier :</div> -->
                 <header class="text-center">
                     <h1 id="cartText"
                         class="text-xl font-bold text-green-900 sm:text-1xl pb-4">Votre panier:</h1>
                 </header>
                 <div id="cartCard" style="display:none">
-                    <ul id="items"
-                        class="text-sm">
-                        <!-- class="mt-8" -->
-                    </ul>
-                    <footer class="flex flex-col text-center justify-end">
+                    <div>
+                        <ul id="items"
+                            class="text-sm">
+                        </ul>
+                    </div>
+                    <footer class="flex flex-col p-4 self-center absolute bottom-0 text-center items-center justify-end">
                         <div>
-                            <button type="button" id="clearCart">Vider le panier</button>
+                            <button type="button" id="checkoutButton" class="inline-block rounded-sm border border-indigo-600 bg-indigo-600 px-4 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:ring-3 focus:outline-hidden">Valider le panier</button>
                         </div>
                         <div>
-                            <button type="button" id="checkoutButton">Valider le panier</button>
+                            <button type="button" id="clearCart" 
+                            class="inline-block rounded-sm border border-indigo-600 px-5 py-3 text-sm font-medium text-indigo-600 hover:bg-sky-200 hover:text-white focus:ring-3 focus:outline-hidden">Vider le panier</button>
                         </div>
                     </footer>
                 </div>

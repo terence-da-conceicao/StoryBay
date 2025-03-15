@@ -45,15 +45,27 @@ function displayItemCard(book, cart, index) {
 
 
 function displayItemInfos(line, book) {
-    line.innerHTML = `${book.title}, ${book.price}€`;
+    const title = document.createElement("span");
+    title.innerHTML = `${book.title}`;
+    title.classList.add("block");
+    line.appendChild(title);
+
+    const price = document.createElement("span");
+    price.innerHTML = `Prix : ${book.price}€`;
+    price.classList.add("block");
+    line.appendChild(price);
 }
+
+
+
+
 
 
 // Ici, on a un appel à removeItem() qui devrait être dans le controller, mais vu que 
 //l'archi n'est pas un MVC ou un médiateur strict, tant pis
 function displayRemoveButton(line, index, cart){
     const remove = document.createElement("button");
-    remove.classList.add("border-black")
+    remove.classList.add("text-white")
     remove.id = "remove"
     remove.innerText = 'Retirer';
     remove.addEventListener("click", (event) => {
