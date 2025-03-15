@@ -35,31 +35,40 @@ export function undisplayCart() {
 
 
 
+
 function displayItemCard(book, cart, index) {
     const li = document.createElement("li");
     li.classList.add("py-2");
 
     const infoContainer = displayItemInfos(li, book);
     displayRemoveButton(infoContainer, index, cart, book);
-    
+
     items.appendChild(li);
 }
 
 
+
+
 function displayItemInfos(line, book) {
     const container = document.createElement("div");
-    container.classList.add("flex", "items-center", "justify-between", "gap-x-4");
+    container.id = "container";
+    container.classList.add("flex", "items-start", "justify-between", "gap-x-4"); // items-start pour aligner en haut
+
+    const textContainer = document.createElement("div"); 
+    textContainer.classList.add("flex", "flex-col"); // Permet d'aligner title et price correctement
 
     const title = document.createElement("span");
     title.innerHTML = `${book.title}`;
     title.classList.add("block", "w-full", "underline");
-    line.appendChild(title);
 
     const price = document.createElement("span");
     price.innerHTML = `Prix : ${book.price}€`;
     price.classList.add("block", "text-gray-400");
-    container.appendChild(price);
 
+    textContainer.appendChild(title);
+    textContainer.appendChild(price);
+    container.appendChild(textContainer);
+    
     line.appendChild(container);
     return container;
 }
@@ -69,14 +78,11 @@ function displayItemInfos(line, book) {
 
 
 
-
-// Ici, on a un appel à removeItem() qui devrait être dans le controller, mais vu que 
-//l'archi n'est pas un MVC ou un médiateur strict, tant pis
 function displayRemoveButton(container, index, cart) {
     const remove = document.createElement("button");
     remove.classList.add(
         "inline-block", "rounded-full", "border", "border-fuchsia-600", 
-        "p-3", "text-fuchsia-600", "hover:border-red-600", "hover:text-red-600", 
+        "p-3", "text-fuchsia-600", "hover:border-fuchsia-900", "hover:text-fuchsia-900", 
         "focus:ring-3", "focus:outline-hidden"
     );
     remove.id = "remove";
@@ -84,16 +90,13 @@ function displayRemoveButton(container, index, cart) {
 
     remove.addEventListener("click", (event) => {
         event.preventDefault();
-
-        // Récupérer le parent <li> et le supprimer
-        const li = container.closest("li"); // Trouve le <li> parent
+        const li = container.closest("li");
         removeItem(li, index, cart);
-        undisplayItem(li); // Supprime toute la ligne
+        undisplayItem(li);
     });
 
     container.appendChild(remove);
 }
-
 
 
 
