@@ -10,13 +10,22 @@ export function displayCart(book, cart) {
 
 
 export function displayFinalTotal(cart, element, offers) {
+    document.getElementById("finalCart").style.display = "block";
     displayElement(element); // l'espace où s'affiche le total
     displayTotal(cart, element);
     displayCheapestCart(cart, offers);
 }
 
 
-
+/* <div id="finalCart">
+            <h3 id="displayTotalEl" style="display:none"></h3>
+            <h3 id="calcul"></h3>
+            <h4 id="annoncediscount1"></h4>
+            <ul id="discountBooks"></ul>
+            <p id="discountDetails"></p>
+            <h3 id="displayDiscountTotalElement"></h3>
+            <h4 id="saved"></h4>
+        </div>*/
 
 export function displayElement(el) {
     if (el.style.display === "none") {

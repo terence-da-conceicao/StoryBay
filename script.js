@@ -41,6 +41,7 @@ addButton.addEventListener("click", (event) => {
 //Valider le panier
 checkoutButton.addEventListener("click", (event) => {
     event.preventDefault();
+    document.getElementById("items").style.display = "none";
     displayFinalTotal(cart, displayTotalEl, offers);
 });
 
