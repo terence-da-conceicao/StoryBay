@@ -16,6 +16,11 @@ export function displayFinalTotal(cart, element, offers) {
     displayCheapestCart(cart, offers);
 }
 
+export function updateTotalButton(checkoutButton) {
+    checkoutButton.innerHTML = `Valider le Panier (${buttonTotal}€)`
+
+
+}
 
 /* <div id="finalCart">
             <h3 id="displayTotalEl" style="display:none"></h3>
@@ -56,7 +61,7 @@ function displayItemCard(book, cart, index) {
 }
 
 
-
+let buttonTotal = 0;
 
 function displayItemInfos(line, book) {
     const container = document.createElement("div");
@@ -72,6 +77,8 @@ function displayItemInfos(line, book) {
 
     const price = document.createElement("span");
     price.innerHTML = `Prix : ${book.price}€`;
+    buttonTotal += book.price
+    console.log(buttonTotal)
     price.classList.add("block", "text-gray-400");
 
     textContainer.appendChild(title);

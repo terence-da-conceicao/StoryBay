@@ -5,7 +5,7 @@ import { displayBookCard } from "./src/view/bookView.js"
 import { displayCart, displayFinalTotal, undisplayCart } from "./src/view/cartView.js"
 import { getData } from "./src/controller/dataController.js"
 import { toClear } from "./src/controller/cartController.js"
-
+import { updateTotalButton } from "./src/view/cartView.js"
 
 
 
@@ -36,6 +36,7 @@ addButton.addEventListener("click", (event) => {
     event.preventDefault();
     addToCart(selectedBook, cart)
     displayCart(selectedBook, cart)/* change le style none de l'espace cart en block et ajoute une ligne par livre choisi */
+    updateTotalButton(checkoutButton);
 });
 
 //Valider le panier
