@@ -4,6 +4,8 @@ import { displayCheapestCart, undisplayCheapestCart } from "../view/cheapestCart
 
 export function displayCart(book, cart) {
     const cartCard = document.getElementById("cartCard");
+    const items = document.getElementById("items");
+    displayElement(items);
     const index = cart.indexOf(book);
     displayElement(cartCard)
     displayItemCard(book, cart, index)
@@ -50,9 +52,9 @@ export function displayElement(el) {
 
 export function undisplayCart() {
     const items = document.getElementById("items")
-    const cartCard = document.getElementById("cartCard")
+    // const cartCard = document.getElementById("cartCard")
     items.innerHTML = "";
-    cartCard.style.display = "none";
+    // cartCard.style.display = "none";
     undisplayCheapestCart();
 }
 

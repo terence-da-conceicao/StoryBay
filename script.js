@@ -47,13 +47,13 @@ checkoutButton.addEventListener("click", (event) => {
 
 clear.addEventListener("click", (event) => {
     event.preventDefault();
-    document.getElementById("selectedBookTitle").innerHTML = "";
-    document.getElementById("bookCard").style.display = "none";
+    // document.getElementById("selectedBookTitle").innerHTML = "";
+    // document.getElementById("bookCard").style.display = "none";
     toClear(cart);
     undisplayCart();
     console.log(cart)
     updateTotalButton(cart, checkoutButton);
-    selectedBook = "";
+    // selectedBook = "";
 });
 
 
