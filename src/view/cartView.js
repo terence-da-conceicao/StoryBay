@@ -114,6 +114,8 @@ function displayRemoveButton(container, index, cart) {
         const li = container.closest("li");
         removeItem(li, index, cart);
         undisplayItem(li);
+        let checkoutButton = document.getElementById("checkoutButton");
+        updateTotalButton(cart, checkoutButton);
     });
 
     container.appendChild(remove);
