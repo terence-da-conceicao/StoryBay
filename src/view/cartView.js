@@ -52,12 +52,12 @@ function displayItemInfos(line, book) {
 
     const title = document.createElement("span");
     title.innerHTML = `${book.title}`;
-    title.classList.add("block", "w-full");
+    title.classList.add("block", "w-full", "underline");
     line.appendChild(title);
 
     const price = document.createElement("span");
     price.innerHTML = `Prix : ${book.price}€`;
-    price.classList.add("block");
+    price.classList.add("block", "text-gray-400");
     container.appendChild(price);
 
     line.appendChild(container);
