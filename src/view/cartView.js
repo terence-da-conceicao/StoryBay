@@ -81,11 +81,11 @@ function displayItemInfos(line, book) {
     textContainer.classList.add("flex", "flex-col"); // Permet d'aligner title et price correctement
 
     const title = document.createElement("span");
-    title.innerHTML = `${book.title}`;
+    title.innerHTML = book.items[0].volumeInfo.title;
     title.classList.add("block", "w-full", "underline");
 
     const price = document.createElement("span");
-    price.innerHTML = `Prix : ${book.price}€`;
+    price.innerHTML = `Prix : ${book.items[0].saleInfo.listPrice.amount}€`;
     price.classList.add("block", "text-gray-400");
 
     textContainer.appendChild(title);

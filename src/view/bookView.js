@@ -21,7 +21,8 @@ export function displayBookCard(state, book, button){
             // title.innerHTML = `${book.items.volumeInfo.title.value}`;
             //rajouter l'auteur et la date de parution
             price.innerHTML = `${book.items[0].saleInfo.listPrice.amount}€`;
-            coverImage.src = book.items[0].volumeInfo.imageLinks.thumbnail;
+            console.log(price.innerHTML)
+            coverImage.src = book.items[0].volumeInfo.imageLinks.thumbnail || "../assets/hp3.jpg";
             coverImage.alt = `couverture de ${book.items[0].volumeInfo.title}`;
             button.style.display = "block";
 
