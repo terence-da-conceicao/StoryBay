@@ -10,9 +10,9 @@ export function displayCheapestCart(cart, offers) {
         let annonce = document.getElementById("annoncediscount1");
         annonce.innerHTML = "5% de réduction sur chaque livre!";
     }, 1000);
-    setTimeout(() => {
-        displayDiscountItems(newCart);
-    },1500);
+    // setTimeout(() => {
+    //     displayDiscountItems(newCart);
+    // },1500);
     setTimeout(() => {
         displayDiscountTotal(discountTotal, cart);
     }, 2000);

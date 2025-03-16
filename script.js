@@ -1,5 +1,5 @@
-import { getSelectedBook } from "./src/controller/formController.js"
-import { createDatalist } from "./src/view/formView.js"
+import { getSearchedBook } from "./src/controller/formController.js"
+// import { createDatalist } from "./src/view/formView.js"
 import { addToCart, setBookState } from "./src/controller/bookController.js"
 import { displayBookCard } from "./src/view/bookView.js"
 import { displayCart, displayFinalTotal, undisplayCart } from "./src/view/cartView.js"
@@ -9,24 +9,29 @@ import { updateTotalButton } from "./src/view/cartView.js"
 
 
 
-const booksList = await getData('src/model/booksList.json')  //récupération des models booksList et offers.//idéalement il faudrait les passer avec des arguemnts, non?
-const offers = await getData("src/model/offers.json");
+// const booksList = await getData('src/model/booksList.json')  //récupération des models booksList et offers.//idéalement il faudrait les passer avec des arguemnts, non?
+// const offers = await getData("src/model/offers.json");
 
 let cart = [];
 let isBookAvailable = false;
-let selectedBook;
+let selectedBook = "";
 export let addButton = document.getElementById("addToCart");
 const form = document.querySelector("form");
 let checkoutButton = document.getElementById("checkoutButton");
 let displayTotalEl = document.getElementById("displayTotalEl");
 const clear = document.getElementById("clearCart");
+let searchedValue = "";
 
-createDatalist(booksList) //affichage du model booksList sous la forme d'une datalist
+// createDatalist(booksList) //affichage du model booksList sous la forme d'une datalist
 
 //soumettre le livre choisi par le user
-form.addEventListener("submit", (event) => {
-    event.preventDefault(), 
+form.addEventListener("submit", async (event) => {
+    event.preventDefault(); 
+    searchedValue = getSearchedBook() // récupère l'entrée utilisateur, parsée avec des "+"
+    selectedBook = await getData(searchedValue) //récupère le json du livre dans l'API google
     updateBook()
+    console.log("selectedBook:", selectedBook)
+    console.log("selectedBook.items[0]: ", selectedBook.items[0])
     displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
 })
 
@@ -59,7 +64,7 @@ clear.addEventListener("click", (event) => {
 
 //update les infos du book choisi, update son état
 function updateBook() {
-    selectedBook = getSelectedBook(selectedBook, booksList)
+    // selectedBook = getSelectedBook(selectedBook, booksList)
     isBookAvailable = setBookState(selectedBook) //on modifie l'état du livre
 }
 

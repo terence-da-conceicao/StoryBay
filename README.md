@@ -12,6 +12,10 @@ Mon architecture est une approche modulaire inspirée du MVC. Un MVC strict m'a 
 
 _____________________________________________________________________________________
 
+key=API_KEY
+AIzaSyBPdBv_E3r935r0ANhlGSbbP9fAqUMdgeQ
+youhouhouhouhou
+
 
 
 TodoList (backlog?):

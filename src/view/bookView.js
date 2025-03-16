@@ -17,10 +17,12 @@ export function displayBookCard(state, book, button){
 
     } else {
             bookCard.style.display = "block";
-            title.innerHTML = `${book.title}`;
-            price.innerHTML = `${book.price}€`;
-            coverImage.src = book.cover
-            coverImage.alt = `couverture de ${book.title}`;
+            title.innerHTML = book.items[0].volumeInfo.title;
+            // title.innerHTML = `${book.items.volumeInfo.title.value}`;
+            //rajouter l'auteur et la date de parution
+            price.innerHTML = `${book.items[0].saleInfo.listPrice.amount}€`;
+            coverImage.src = book.items[0].volumeInfo.imageLinks.thumbnail;
+            coverImage.alt = `couverture de ${book.items[0].volumeInfo.title}`;
             button.style.display = "block";
 
 
