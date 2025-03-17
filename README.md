@@ -22,5 +22,5 @@ Il s'agit avant tout d'un projet personnel à visée pédagogique pour revoir le
 
 ## Étapes
 1. Cloner le dépôt
-2. Dans votre fichier `script.js`, remplacez `VOTRE_CLE_API_ICI` par votre clé API
+2. Dans votre fichier `dataController.js` présent dans le dossier `controller`, remplacez `VOTRE_CLE_API_ICI` par votre clé API
 3. Lancer Go Live
