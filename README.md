@@ -1,43 +1,26 @@
-Notes pour clean code:
+# Introduction
+StoryBay est une interface de librarie en ligne. On peut rechercher n'importe quel livre dans la barre de recherche, l'ajouter au panier (ou l'en retirer) puis valider son panier et voir le total avec les réductions.
+Il s'agit avant tout d'un projet personnel à visée pédagogique pour revoir les bases du developpement en front-end.
+## Objectifs : 
+- implémenter un MVC sans s'aider d'un framework
+- gérer des evenements et de l'asynchrone
+- se familiariser avec Tailwind CSS
+- relier une API web
 
-Mon architecture est une approche modulaire inspirée du MVC. Un MVC strict m'a semblé trop rigide pour mon projet et mon projet trop petit pour implémenter un vrai MVC (pas la peine). 
+# Installation
+## Prérequis
+- Go Live
+- une clé API Google Books
 
+### Étapes pour obtenir une clé API :
+1. Allez sur [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
+2. Connectez-vous avec votre compte Google.
+3. Créez un **nouveau projet** (ou utilisez un projet existant).
+4. Activez l'**API Google Books** ([Lien direct](https://console.cloud.google.com/marketplace/product/google/books.googleapis.com)).
+5. Dans "Identifiants", cliquez sur **Créer des identifiants > Clé API**.
+6. Copiez la clé API générée.
 
-- faut-il définir un schéma constant pour situer les eventListeners dans l'architecture? le bouton Ajouter au panier est dans le corps du script (difficile de transmettre les infos du bouton sinon), le bouton Rechercher (soumission formulaire) aussi. Vérifier s'ils ont le même schéma de transmission, pour s'assurer de la cohérence.
-
-
-- Vérifier les points-virgules à la fin des lignes.
-
-- Est-ce que cette architecture est un vrai MVC? Trouver des exemples similaires sur github.
-
-_____________________________________________________________________________________
-
-
-
-TodoList (backlog?):
-
-
-- changer les id du html du français à l'anglais
-
-- Se renseigner pour savoir s'il vaut mieux générer les elements HTML pour les display en none
-
-- Afficher le détail des réductions
-
-- Utiliser un TimeSetOut pour simuler visuellement des calculs de réductions
-
-- Finir d'organiser en MVC et séparer les fonctions au passage
-
-- Pouvoir vider le panier
-
-- Implémenter une navigation sur 2 pages
-
-- Installer un vrai design avec une bibliothèque ou un truc genre TailWind
-
-- Relier le site à une API web pour avoir des noms de livres
-
-- Mieux comprendre les lignes de deleteItems()
-
-- Dans cartView, les fonctions ont quasiment toutes les mêmes arguments. Est-ce que je peux pas plutôt mettre ces élements en global dans ce fichier, et les modifier/utiliser directement dans le corps des fonctions, sans leur passer d'arguments? Pour la lisibilité et ça me semble plus logique.
-Mais cela veut dire que je dois réinitialiser les variables à chaque fois...
-
-- Est-ce que c'est bien d'avoir des paramètres qui ont des noms un peu génériques et d'auters qui ont le même nom que les arguments? Dois-je tout mettre en générique, ou tout mettre pareil que l'argument sauf quand la fonctino manipule plusieurs arguments différents?
+## Étapes
+1. Cloner le dépôt
+2. Dans votre fichier `script.js`, remplacez `VOTRE_CLE_API_ICI` par votre clé API
+3. Lancer Go Live
