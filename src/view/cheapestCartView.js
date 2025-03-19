@@ -2,65 +2,62 @@ import { getCheapestCart } from "../controller/cheapestCartController.js"
 import { getTotal } from "../controller/cartController.js"
 
 
-export function displayCheapestCart(cart, offers) {
-    const { newCart, discountTotal } = getCheapestCart(cart, offers)
-
-    displayTitle();
-    setTimeout(() => {
-        let annonce = document.getElementById("annoncediscount1");
-        annonce.innerHTML = "5% de réduction sur chaque livre!";
-    }, 1000);
-    setTimeout(() => {
-        displayDiscountItems(newCart);
-    },1500);
-    setTimeout(() => {
-        displayDiscountTotal(discountTotal, cart);
-    }, 2000);
+function displayDiscountMessage() {
+    let message = document.getElementById("calcul");
+    message.innerHTML = "Calcul de vos réductions...";
 }
 
 
-
-function displayTitle() {
-    let title = document.getElementById("calcul");
-    title.innerHTML = "Calcul de vos réductions...";
+function displayDiscount1() {
+    let message1 = document.getElementById("discount1Message");
+    message1.innerHTML = "• 5% de réduction sur chaque livre";
 }
 
+function displayDiscount2(){
+    let message2 = document.getElementById("discount2Message");
+    message2.innerHTML = "• 15% sur l'ensemble du panier";
+}
 
-// function displayDiscountItems(cart) {
-//     const ul = document.getElementById("discountBooks")
-//     for (let i = 0; i < cart.length; i++) {
-//         const li = document.createElement("li");
-//         li.innerHTML = `${cart[i].title}, ${cart[i].price}€`;
-//         ul.appendChild(li);
-//     }
-// }
-
-function displayDiscountTotal(total, cart) {
-    let details = document.getElementById("discountDetails")
-    let finalTotalText = document.getElementById("displayDiscountTotalElement");
-    let saved = document.getElementById("saved");
-    let extradiscount = "";
+function displayDiscount3(total) {
+    let message3 = document.getElementById("discount2Message");
     if (total >= 100) {
-        extradiscount = " et 12€ de réduction par tranche de 100€"
+        message3.innerHTML = "• 12€ de réduction par tranche de 100€";
     }
-
-   details.innerHTML = `ainsi que 15% sur l'ensemble du panier${extradiscount} !`
-   finalTotalText.innerHTML = `Total avec les réductions: ${total.toFixed(2)}€`
-       
-   let expensiveTotal = getTotal(cart)
-    saved.innerHTML = `Vous avez économisé ${(expensiveTotal-total).toFixed(2)}€! 💸`
-
 }
+
+function displayFinalTotalandSaved(discountTotal, expensiveTotal) {
+    let finalTotalText = document.getElementById("discountTotalMessage");
+    let saved = document.getElementById("saved");
+
+    finalTotalText.innerHTML = `Total avec les réductions: ${discountTotal.toFixed(2)}€`;
+    saved.innerHTML = `Vous avez économisé ${(expensiveTotal-discountTotal).toFixed(2)}€! 💸`;
+}
+
+
+
+export function displayCheapestCart(cart, offers) {
+    let initialTotal = getTotal(cart);
+    const discountTotal = getCheapestCart(cart, offers);
+
+    setTimeout(() => {displayDiscountMessage()}, 500);
+    setTimeout(() => {displayDiscount1()}, 1000);
+    setTimeout(() => {displayDiscount2()}, 1500);
+    setTimeout(() => {displayDiscount3(initialTotal)}, 2000);
+    setTimeout(() => {displayFinalTotalandSaved(discountTotal, initialTotal)}, 3000);
+}
+
+
+
 
 export function undisplayCheapestCart() {
     const cheapestCart = document.getElementById("finalCart");
     if (cheapestCart) {
-      const children = cheapestCart.children;
-      for (let i = 0; i < children.length; i++) {
-        children[i].innerHTML = "";
-      }
+        const children = cheapestCart.children;
+        for (let i = 0; i < children.length; i++) {
+            children[i].innerHTML = "";
+        }
     }
-  }
+}
 
 
 
