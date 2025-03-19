@@ -5,24 +5,24 @@ import { displayCheapestCart, undisplayCheapestCart } from "../view/cheapestCart
 export function displayCart(book, cart) {
     const cartCard = document.getElementById("cartCard");
     const items = document.getElementById("items");
-    displayElement(items);
     const index = cart.indexOf(book);
-    displayElement(cartCard)
-    displayItemCard(book, cart, index)
+    
+    displayElement(items);
+    displayElement(cartCard);
+    displayItemCard(book, cart, index);
 }
 
 
 export function displayFinalTotal(cart, element, offers) {
     document.getElementById("finalCart").style.display = "block";
-    displayElement(element); // l'espace où s'affiche le total
+    displayElement(element);
     displayTotal(cart, element);
     displayCheapestCart(cart, offers);
 }
 
 export function updateTotalButton(cart, checkoutButton) {
     let total = getTotal(cart);
-    console.log("updateTotalButton. total: ",total, " , ", typeof total)
-    checkoutButton.innerHTML = "Valider le panier"; //réinitialisation
+    checkoutButton.innerHTML = "Valider le panier";
     if (total > 0) {
     checkoutButton.innerHTML = `Valider le panier (${total})€`;
     }
@@ -31,20 +31,8 @@ export function updateTotalButton(cart, checkoutButton) {
 
 function displayTotal(cart, element) {
     let total = getTotal(cart);
-    console.log("displayTotal. total :", total, " , ", typeof total)
     element.innerHTML = `Total : ${total}€`;
 }
-
-
-/* <div id="finalCart">
-            <h3 id="displayTotalEl" style="display:none"></h3>
-            <h3 id="calcul"></h3>
-            <h4 id="discount1Message"></h4>
-            <ul id="discountBooks"></ul>
-            <p id="discount1&3Message"></p>
-            <h3 id="discountTotalMessage"></h3>
-            <h4 id="saved"></h4>
-        </div>*/
 
 export function displayElement(el) {
     if (el.style.display === "none") {
@@ -53,10 +41,8 @@ export function displayElement(el) {
 }
 
 export function undisplayCart() {
-    const items = document.getElementById("items")
-    // const cartCard = document.getElementById("cartCard")
+    const items = document.getElementById("items");
     items.innerHTML = "";
-    // cartCard.style.display = "none";
     undisplayCheapestCart();
 }
 
@@ -74,13 +60,15 @@ function displayItemCard(book, cart, index) {
     items.appendChild(li);
 }
 
+
+
 function displayItemInfos(line, book) {
     const container = document.createElement("div");
     container.id = "container";
-    container.classList.add("flex", "items-start", "justify-between", "gap-x-4"); // items-start pour aligner en haut
+    container.classList.add("flex", "items-start", "justify-between", "gap-x-4");
 
     const textContainer = document.createElement("div"); 
-    textContainer.classList.add("flex", "flex-col"); // Permet d'aligner title et price correctement
+    textContainer.classList.add("flex", "flex-col");
 
     const title = document.createElement("span");
     title.innerHTML = book.title;

@@ -11,15 +11,14 @@ export function removeItem(line, index, cart) {
 
 
 export function getTotal(cart){
-    //récupérer le prix total des livres, sans réductions
     let total = 0;
-    cart.forEach( (item) => total += item.price)
-//ici, total est un number
+    cart.forEach( (item) => total += item.price);
     return total
 }
 
+
+
 export function toClear(cart) {
     cart.length = 0;
-    console.log("cart vidé:", cart);
 }
 

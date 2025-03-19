@@ -21,8 +21,7 @@ function displayDiscount2(){
 function displayDiscount3(total) {
     let message3 = document.getElementById("discount2Message");
     if (total >= 100) {
-        console.log("total supérieur à 100€")
-        message3 = " • 12€ de réduction par tranche de 100€";
+        message3.innerHTML = " • 12€ de réduction par tranche de 100€";
     }
 }
 
@@ -40,15 +39,11 @@ export function displayCheapestCart(cart, offers) {
     let initialTotal = getTotal(cart);
     const discountTotal = getCheapestCart(cart, offers);
 
-    setTimeout(() => {displayDiscountMessage()}, 500); //calcul de vos réductions....
-
-    setTimeout(() => {displayDiscount1()}, 1000); // 5% sur chaque livre!
-    setTimeout(() => {displayDiscount2()}, 1500); // 15% sur l'ensemble du panier!
-    setTimeout(() => {displayDiscount3(initialTotal)}, 2000); // 12€ de réduction par tranche de 100€!!
-
+    setTimeout(() => {displayDiscountMessage()}, 500);
+    setTimeout(() => {displayDiscount1()}, 1000);
+    setTimeout(() => {displayDiscount2()}, 1500);
+    setTimeout(() => {displayDiscount3(initialTotal)}, 2000);
     setTimeout(() => {displayFinalTotalandSaved(discountTotal, initialTotal)}, 3000);
-    // display5pctsDiscount();
-    // displayDiscountTotal(discountTotal, cart);
 }
 
 
@@ -57,12 +52,12 @@ export function displayCheapestCart(cart, offers) {
 export function undisplayCheapestCart() {
     const cheapestCart = document.getElementById("finalCart");
     if (cheapestCart) {
-      const children = cheapestCart.children;
-      for (let i = 0; i < children.length; i++) {
-        children[i].innerHTML = "";
-      }
+        const children = cheapestCart.children;
+        for (let i = 0; i < children.length; i++) {
+            children[i].innerHTML = "";
+        }
     }
-  }
+}
 
 
 
