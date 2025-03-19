@@ -10,50 +10,43 @@ function displayDiscountMessage() {
 
 function displayDiscount1() {
     let message1 = document.getElementById("discount1Message");
-    message1.innerHTML = "5% de réduction sur chaque livre";
+    message1.innerHTML = "• 5% de réduction sur chaque livre";
 }
 
 function displayDiscount2(){
     let message2 = document.getElementById("discount2Message");
-    message2.innerHTML = `15% sur l'ensemble du panier.`;
+    message2.innerHTML = `• 15% sur l'ensemble du panier`;
 }
 
-function displayDiscount3() {
+function displayDiscount3(total) {
     let message3 = document.getElementById("discount2Message");
     if (total >= 100) {
-        message3 = " et 12€ de réduction par tranche de 100€!";
+        console.log("total supérieur à 100€")
+        message3 = " • 12€ de réduction par tranche de 100€";
     }
 }
 
-function displayFinalTotalandSaved() {
+function displayFinalTotalandSaved(discountTotal, expensiveTotal) {
     let finalTotalText = document.getElementById("discountTotalMessage");
     let saved = document.getElementById("saved");
-    let expensiveTotal = getTotal(cart);
 
-}
-
-
-    let finalTotalText = document.getElementById("discountTotalMessage");
-    let saved = document.getElementById("saved");
-    let expensiveTotal = getTotal(cart);
-
-
-    finalTotalText.innerHTML = `Total avec les réductions: ${total.toFixed(2)}€`;
-    saved.innerHTML = `Vous avez économisé ${(expensiveTotal-total).toFixed(2)}€! 💸`;
+    finalTotalText.innerHTML = `Total avec les réductions: ${discountTotal.toFixed(2)}€`;
+    saved.innerHTML = `Vous avez économisé ${(expensiveTotal-discountTotal).toFixed(2)}€! 💸`;
 }
 
 
 
 export function displayCheapestCart(cart, offers) {
+    let initialTotal = getTotal(cart);
     const discountTotal = getCheapestCart(cart, offers);
 
-    setTimeout(() => {displayDiscountMessage()}, 900); //calcul de vos réductions....
+    setTimeout(() => {displayDiscountMessage()}, 500); //calcul de vos réductions....
 
-    setTimeout(() => {displayDiscount1()}, 900); // 5% sur chaque livre!
-    setTimeout(() => {displayDiscount2()}, 2000); // 15% sur l'ensemble du panier!
-    setTimeout(() => {displayDiscount3()}, 2000); // 12€ de réduction par tranche de 100€!!
+    setTimeout(() => {displayDiscount1()}, 1000); // 5% sur chaque livre!
+    setTimeout(() => {displayDiscount2()}, 1500); // 15% sur l'ensemble du panier!
+    setTimeout(() => {displayDiscount3(initialTotal)}, 2000); // 12€ de réduction par tranche de 100€!!
 
-    setTimeout(() => {displayDiscountTotal(discountTotal, cart)}, 3000);
+    setTimeout(() => {displayFinalTotalandSaved(discountTotal, initialTotal)}, 3000);
     // display5pctsDiscount();
     // displayDiscountTotal(discountTotal, cart);
 }
