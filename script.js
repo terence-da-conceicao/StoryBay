@@ -3,14 +3,14 @@ import { getSearchedBook } from "./src/controller/formController.js"
 import { addToCart, setBookState } from "./src/controller/bookController.js"
 import { displayBookCard } from "./src/view/bookView.js"
 import { displayCart, displayFinalTotal, undisplayCart } from "./src/view/cartView.js"
-import { getData } from "./src/controller/dataController.js"
+import { getData, getOffers } from "./src/controller/dataController.js"
 import { toClear } from "./src/controller/cartController.js"
 import { updateTotalButton } from "./src/view/cartView.js"
 
 
 
 // const booksList = await getData('src/model/booksList.json')  //récupération des models booksList et offers.//idéalement il faudrait les passer avec des arguemnts, non?
-// const offers = await getData("src/model/offers.json");
+const offers = await getOffers("src/model/offers.json");
 
 let cart = [];
 let isBookAvailable = false;
@@ -31,7 +31,6 @@ form.addEventListener("submit", async (event) => {
     selectedBook = await getData(searchedValue) //récupère le json du livre dans l'API google
     updateBook()
     console.log("selectedBook:", selectedBook)
-    console.log("selectedBook.items[0]: ", selectedBook.items[0])
     displayBookCard(isBookAvailable, selectedBook, addButton) // on affiche la bookCard (titre + bouton d'ajout)
 })
 

@@ -1,6 +1,7 @@
 export function displayBookCard(state, book, button){
     const bookCard = document.getElementById("bookCard");
     const title = document.getElementById("selectedBookTitle");
+    const author = document.getElementById("author");
     const coverImage = document.getElementById("bookCover");
     const price = document.getElementById("price");
     const errorCard = document.getElementById("errorCard");
@@ -17,16 +18,14 @@ export function displayBookCard(state, book, button){
 
     } else {
             bookCard.style.display = "block";
-            title.innerHTML = book.items[0].volumeInfo.title;
-            // title.innerHTML = `${book.items.volumeInfo.title.value}`;
-            //rajouter l'auteur et la date de parution
-            price.innerHTML = `${book.items[0].saleInfo.listPrice.amount}€`;
-            console.log(price.innerHTML)
-            coverImage.src = book.items[0].volumeInfo.imageLinks.thumbnail || "../assets/hp3.jpg";
-            coverImage.alt = `couverture de ${book.items[0].volumeInfo.title}`;
+            title.innerHTML = book.title
+            author.innerHTML = book.author;
+            price.innerHTML = book.price;
+            coverImage.src = book.cover;
+            coverImage.alt = `couverture de ${book.title}`;
             button.style.display = "block";
 
-
+            console.log("livre affiché");
             bookCard.classList.remove("hidden");
 
             if (errorCard) {

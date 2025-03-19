@@ -21,6 +21,7 @@ export function displayFinalTotal(cart, element, offers) {
 
 export function updateTotalButton(cart, checkoutButton) {
     let total = getTotal(cart);
+    console.log("updateTotalButton. total: ",total, " , ", typeof total)
     checkoutButton.innerHTML = "Valider le panier"; //réinitialisation
     if (total > 0) {
     checkoutButton.innerHTML = `Valider le panier (${total})€`;
@@ -30,6 +31,7 @@ export function updateTotalButton(cart, checkoutButton) {
 
 function displayTotal(cart, element) {
     let total = getTotal(cart);
+    console.log("displayTotal. total :", total, " , ", typeof total)
     element.innerHTML = `Total : ${total}€`;
 }
 
@@ -37,10 +39,10 @@ function displayTotal(cart, element) {
 /* <div id="finalCart">
             <h3 id="displayTotalEl" style="display:none"></h3>
             <h3 id="calcul"></h3>
-            <h4 id="annoncediscount1"></h4>
+            <h4 id="discount1Message"></h4>
             <ul id="discountBooks"></ul>
-            <p id="discountDetails"></p>
-            <h3 id="displayDiscountTotalElement"></h3>
+            <p id="discount1&3Message"></p>
+            <h3 id="discountTotalMessage"></h3>
             <h4 id="saved"></h4>
         </div>*/
 
@@ -81,11 +83,11 @@ function displayItemInfos(line, book) {
     textContainer.classList.add("flex", "flex-col"); // Permet d'aligner title et price correctement
 
     const title = document.createElement("span");
-    title.innerHTML = book.items[0].volumeInfo.title;
+    title.innerHTML = book.title;
     title.classList.add("block", "w-full", "underline");
 
     const price = document.createElement("span");
-    price.innerHTML = `Prix : ${book.items[0].saleInfo.listPrice.amount}€`;
+    price.innerHTML = `Prix : ${book.price}€`;
     price.classList.add("block", "text-gray-400");
 
     textContainer.appendChild(title);
