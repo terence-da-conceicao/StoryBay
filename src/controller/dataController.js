@@ -22,7 +22,7 @@ export async function getOffers(data) {
 
 
 async function fetchData(query) {
-    const apiKey = 'AIzaSyBPdBv_E3r935r0ANhlGSbbP9fAqUMdgeQ'
+    const apiKey = `VOTRE_CLE_API_ICI`;
     const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&key=${apiKey}`;
     try {
         const response = await fetch(url);

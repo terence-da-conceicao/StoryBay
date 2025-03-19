@@ -99,7 +99,7 @@ function displayRemoveButton(container, index, cart) {
         "focus:ring-3", "focus:outline-hidden"
     );
     remove.id = "remove";
-    remove.innerText = 'Retirer';
+    remove.innerText = "Retirer";
 
     remove.addEventListener("click", (event) => {
         event.preventDefault();

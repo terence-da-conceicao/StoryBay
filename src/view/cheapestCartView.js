@@ -15,13 +15,13 @@ function displayDiscount1() {
 
 function displayDiscount2(){
     let message2 = document.getElementById("discount2Message");
-    message2.innerHTML = `• 15% sur l'ensemble du panier`;
+    message2.innerHTML = "• 15% sur l'ensemble du panier";
 }
 
 function displayDiscount3(total) {
     let message3 = document.getElementById("discount2Message");
     if (total >= 100) {
-        message3.innerHTML = " • 12€ de réduction par tranche de 100€";
+        message3.innerHTML = "• 12€ de réduction par tranche de 100€";
     }
 }
 
